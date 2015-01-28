@@ -1,0 +1,66 @@
+CREATE TABLE register(  
+    user_id int(11) AUTO_INCREMENT,
+    PRIMARY KEY(user_id),
+    first_name varchar(50) not null,
+    last_name varchar(50) not null,
+    email_address varchar(50) not null,
+terms_cond varchar(50) not null,
+    user_pass varchar(50) not null,
+    created_at timestamp default now(),
+    updated_at timestamp,    
+    ) ENGINE=INNODB;
+
+CREATE TABLE user(
+        user_id int(11) not null,
+        PRIMARY KEY(user_id),
+        phone_nmbr int(11) not null,
+        post_code varchar(50) not null,
+        birth_date varchar(50) not null,
+        under_18 varchar(50) not null,
+        gender varchar(50) not null,
+        expertise varchar(50) not null,
+        int_tags text not null,
+        use_currloc varchar(50) not null,
+        see_currloc varchar(50) not null,
+        see_details varchar(50) not null,
+        updated_at timestamp
+	CONSTRAINT FOREIGN KEY (user_id)
+    	REFERENCES register(user_id)
+    	ON DELETE CASCADE ON UPDATE CASCADE
+        ) ENGINE=INNODB;
+        
+
+    
+CREATE TABLE venue(
+    venue_id int(11) AUTO_INCREMENT,
+    user_id int(11) not null,
+    v_name varchar(50) not null,
+    v_type varchar(50) not null,
+    post_code varchar(50) not null,
+    max_cap int(11) not null,
+    v_desc text not null,
+    created_at timestamp default now(),
+    updated_at timestamp,
+    PRIMARY KEY(venue_id),
+    CONSTRAINT FOREIGN KEY (user_id)
+    REFERENCES register(user_id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+    ) ENGINE=INNODB;
+    
+CREATE TABLE event (
+    event_id int(11) AUTO_INCREMENT,
+    user_id int(11) not null,
+    e_name varchar(50) not null,
+    start_date varchar(50) not null,
+    end_date varchar(50) not null,
+    post_code varchar(50) not null,
+    max_cap int(11)not null,
+    e_desc text not null,
+    created_at timestamp default now(),
+    updated_at timestamp,
+    PRIMARY KEY(event_id),
+    CONSTRAINT FOREIGN KEY (user_id)
+    REFERENCES register(user_id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+    ) ENGINE=INNODB;
+    

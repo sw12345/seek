@@ -1,0 +1,18 @@
+[  
+      {  
+         "userId":1,
+         "firstname":"admin",
+         "lastname":"seek",
+         "email":"adminuser",
+         "phone":"2147483647",
+         "postcode1":"N7",
+         "postcode2":"9GU",
+         "postCode":"N79GU",
+         "under18":"No",
+         "gender":"Female",
+         "interests":"Hiking",
+         "currloc":"false",
+         "seecurrloc":"false",
+         "contdetails":"false"
+      }
+   ]
