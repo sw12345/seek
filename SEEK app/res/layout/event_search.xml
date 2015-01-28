@@ -1,0 +1,96 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.compgc02.team26.event.EventSearch" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp" >
+
+        <TextView
+            android:id="@+id/eventPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="false"
+            android:layout_gravity="center_vertical"
+            android:text="@string/title_activity_event"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/eventPage" >
+
+            <RadioButton
+                android:id="@+id/radiusRadiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/search_radius" >
+            </RadioButton>
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp" >
+
+                <EditText
+                    android:id="@+id/inputRadius"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/search_radius2"
+                    android:inputType="number" >
+
+                    <requestFocus />
+                </EditText>
+
+                <TextView
+                    android:id="@+id/fromMeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/events_radius_from_me_2"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/postcodeRadiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_postcode" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp" >
+
+                <EditText
+                    android:id="@+id/postcode"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/search_postcode2" >
+                </EditText>
+            </LinearLayout>
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/radioGroupEvent"
+            android:onClick="searchEvent"
+            android:padding="10dp"
+            android:text="@string/search_text" >
+        </Button>
+    </RelativeLayout>
+
+</ScrollView>

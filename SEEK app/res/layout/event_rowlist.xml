@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <!-- Event id (vid) - will be HIDDEN - used to pass to other activity -->
+
+    <TextView
+        android:id="@+id/eventId"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <!-- Event Name Label -->
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#f58021"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <!-- Post Code Label -->
+
+    <TextView
+        android:id="@+id/postcode"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp" />
+
+    <!-- Distance -->
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp" />
+
+</LinearLayout>
