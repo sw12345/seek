@@ -49,12 +49,12 @@ public class StartPage extends SherlockFragmentActivity implements OnClickListen
 	
 	private ProgressDialog pDialog;
 
-	private EditText inputEmail;
-	private EditText inputPassword;
-	private String email_address;
-	private String user_pass;
-	private String userId;
-	private String email;
+	EditText inputEmail;
+	EditText inputPassword;
+	String email_address;
+	String user_pass;
+	String userId;
+	String email;
 
 	// url to log user in
 	private static String url_login = "http://seek.wc.lt/seek/login.php";
