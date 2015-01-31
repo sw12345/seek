@@ -1,0 +1,189 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    tools:context="com.compgc02.samsudin.seek" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp" >
+
+        <TextView
+            android:id="@+id/userProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="@string/profile_text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/firstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text="@string/first_name_text" />
+
+        <EditText
+            android:id="@+id/firstNameInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/lastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_name_text" />
+
+        <EditText
+            android:id="@+id/lastNameInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/phoneText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_text" />
+
+        <EditText
+            android:id="@+id/phoneInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_hint"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/addressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/address" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address_text"
+            android:inputType="phone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/postcodeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/post_code_text" />
+
+            <EditText
+                android:id="@+id/postcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/postcode_hint"
+                android:inputType="textPostalAddress" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/dobText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dob_text" />
+
+            <EditText
+                android:id="@+id/birthInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:onClick="datepickerClick" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/under18Check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/under18_text" />
+
+        <RadioGroup
+            android:id="@+id/radioSex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/maleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/male_checkbox" />
+
+            <RadioButton
+                android:id="@+id/femaleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/female_checkbox" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/interestTags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/interest_tags_text" />
+
+            <EditText
+                android:id="@+id/interestTagsInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="text" >
+            </EditText>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/useCurrentLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/use_current_location" />
+
+        <CheckBox
+            android:id="@+id/othersSeeCrntLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/others_current_location" />
+
+        <CheckBox
+            android:id="@+id/othersSeeCntctDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/others_contact_details" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:text="@string/save_button" />
+
+    </LinearLayout>
+
+</ScrollView>
