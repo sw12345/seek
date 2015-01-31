@@ -12,6 +12,8 @@ import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -50,7 +52,7 @@ public class VenueResultsRadius extends SherlockFragmentActivity implements Loca
 	private static final String TAG = VenueResultsRadius.class.getSimpleName();
 
 	// son URL
-	private static final String url_radius = "http://seek.wc.lt/seek/search_venue_radius.php";
+	private static final String url_radius = "http://seek-app.wc.lt/search_venue_radius.php";
 
 	private static final String INTENT_KEY = "intentkey";
 	
@@ -63,6 +65,7 @@ public class VenueResultsRadius extends SherlockFragmentActivity implements Loca
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.event_userlist);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		// GPS
 		locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

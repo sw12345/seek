@@ -7,9 +7,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,20 +32,18 @@ public class ContactDetails extends SherlockFragmentActivity {
 	private TextView txtEmail;
 	private TextView txtGender;
 	private TextView txtInterests;
-
 	
 	String userId;
 
 	private static final String TAG_UID = "userId";
 	private static final String TAG = ContactDetails.class.getSimpleName();
-	private static final String url_contact_details = "http://seek.wc.lt/seek/get_contact_details.php";
+	private static final String url_contact_details = "http://seek-app.wc.lt/get_contact_details.php";
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.contact_details);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		// Getting event details from intent
 		Intent intent = getIntent();
@@ -60,8 +59,6 @@ public class ContactDetails extends SherlockFragmentActivity {
 	 * Getting event details in background thread
 	 * */
 	private void getEventDetails(final String user_id) {
-
-		//rq = Volley.newRequestQueue(this);
 
 		StringRequest postReq2 = new StringRequest(Request.Method.POST, url_contact_details, new Response.Listener<String>() {
 
@@ -102,8 +99,6 @@ public class ContactDetails extends SherlockFragmentActivity {
 			public void onErrorResponse(VolleyError error) {
 				VolleyLog.d(TAG, "Error: " + error.getMessage());
 				Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-
-
 			}
 
 		})  {
@@ -117,8 +112,6 @@ public class ContactDetails extends SherlockFragmentActivity {
 
 		};
 		Controller.getInstance().addToRequestQueue(postReq2);
-		//rq.add(postReq2);
-
 	}
 	
 	@Override	

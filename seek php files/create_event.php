@@ -5,9 +5,10 @@ error_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPOR
 
 //if new user input
 if($_POST) {
-	$post_code = $_POST['post_code'];
+	$address = $_POST['address'];
 	// connect to google geocode api
-	$url = "https://maps.googleapis.com/maps/api/geocode/json?address=$post_code+UK&key=AIzaSyCaweuQFb5W4JYsPurl5y71DYqLiD6XjaU";
+	$trimaddress = str_replace(" ","+", trim($address));
+	$url = "https://maps.googleapis.com/maps/api/geocode/json?address=$trimaddress+UK&key=AIzaSyCaweuQFb5W4JYsPurl5y71DYqLiD6XjaU";
 	$json = file_get_contents($url);
 	$geocode = json_decode($json, true);
 
@@ -24,26 +25,23 @@ if($_POST) {
 	//sql query
 	/* For testing purpose, the user_id is set to 1 because it's the foreign key that connects the tables. */
 	$query = "INSERT INTO event 
-	(user_id, e_name, start_date, end_date, post_code1, post_code2, post_code, max_cap, reg_link, e_desc, latitude, longitude)
-	VALUES(1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	(user_id, e_name, start_date, end_date, address, post_code, max_cap, reg_link, e_desc, latitude, longitude)
+	VALUES(6, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
 	//if the statement was prepared
 	if($statement = $conn->prepare($query)){
 		$statement->bind_param(
-			"ssssssissss",
+			"sssssissss",
 			$_POST['e_name'],
 			$_POST['start_date'],
 			$_POST['end_date'],
-			$_POST['post_code1'],
-			$_POST['post_code2'],
+			$_POST['address'],
 			$_POST['post_code'],
 			$_POST['max_cap'],
 			$_POST['reg_link'],
 			$_POST['e_desc'],
-		$latitude,
-		$longitude
-			/*$_POST['latitude'],
-			$_POST['longitude']*/
+			$latitude,
+			$longitude
 			);
 		
 		//execute the insert query

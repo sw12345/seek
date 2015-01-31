@@ -34,7 +34,6 @@ public class EventSearch extends Fragment {
 			@Override
 			public void onClick(View v) {
 				int selected = rg.getCheckedRadioButtonId();
-				Bundle b = new Bundle();
 				switch (selected) {
 
 				case R.id.radiusRadiobutton:

@@ -1,6 +1,8 @@
 package com.compgc02.team26.contact;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.View;
@@ -25,6 +27,7 @@ public class ContactSearch extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.contact_search);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		inputRadius = (EditText) findViewById(R.id.inputRadius);
 		inputPostcode = (EditText) findViewById(R.id.postcode);
@@ -35,7 +38,6 @@ public class ContactSearch extends SherlockFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				int selected = rg.getCheckedRadioButtonId();
-				Bundle b = new Bundle();
 				switch (selected) {
 
 				case R.id.radiusRadiobutton:

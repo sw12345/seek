@@ -9,7 +9,7 @@ include 'db_connect.php';
 if(isset($_POST['event_id'])) { $event_id = $_POST['event_id']; }
 
 //make a query
-$query = "SELECT event_id, e_name, start_date, end_date, address, post_code1, post_code2, post_code, max_cap, reg_link, e_desc FROM event WHERE event_id = ?";
+$query = "SELECT event_id, e_name, start_date, end_date, address, post_code, max_cap, reg_link, e_desc FROM event WHERE event_id = ?";
 
 if ($stmt = $conn->prepare($query)) {
 	$stmt-> bind_param('i', $event_id);
@@ -17,7 +17,7 @@ if ($stmt = $conn->prepare($query)) {
 	//send query to db
 	$stmt-> execute();
 	$stmt->store_result();
-	$stmt->bind_result($event_id, $e_name, $start_date, $end_date, $address, $post_code1, $post_code2, $post_code, $max_cap, $reg_link, $e_desc);
+	$stmt->bind_result($event_id, $e_name, $start_date, $end_date, $address, $post_code, $max_cap, $reg_link, $e_desc);
 
 	//fetch values by looping through each row
 	while ($stmt->fetch()) {
@@ -28,9 +28,7 @@ if ($stmt = $conn->prepare($query)) {
 			'enddate' => $end_date,
 			'maxCap' => $max_cap,
 			'address' => $address,
-			'postcode1' => $post_code1,
-			'postcode2' => $post_code2,
-			'postCode' => $post_code,
+			'postcode' => $post_code,
 			'regLink' => $reg_link,
 			'description' => $e_desc
 		);

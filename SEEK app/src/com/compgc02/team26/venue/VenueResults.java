@@ -3,38 +3,30 @@ package com.compgc02.team26.venue;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.compgc02.samsudin.seek.R;
 import com.compgc02.team26.seek.JSONParser;
-import com.compgc02.team26.venue.VenueResults.LoadAllVenues;
 
 public class VenueResults extends SherlockFragmentActivity  {
 
@@ -47,7 +39,7 @@ public class VenueResults extends SherlockFragmentActivity  {
 	 * URL containing database search. THIS NEEDS TO CHANGE. CREATE ANOTHER PHP FILE FOR SEARCH FUNCTION!!
 	 * Try to modify the PHP file for search function.
 	 */
-	final String url_all_venues = "http://seek.wc.lt/seek/get_userlist_venue.php";
+	final String url_all_venues = "http://seek-app.wc.lt/get_userlist_venue.php";
 
 	private ProgressDialog pDialog;
 
@@ -68,6 +60,7 @@ public class VenueResults extends SherlockFragmentActivity  {
 
 		setContentView(R.layout.venue_rowlist);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		// Hashmap for ListView
 		venueList = new ArrayList<HashMap<String, String>>();

@@ -10,8 +10,6 @@ if (isset($_POST['venue_id'])) {
 	$venue_id = $_POST['venue_id'];
 	$v_name = $_POST['v_name'];
 	$v_type = $_POST['v_type'];
-	$post_code1 = $_POST['post_code1'];
-	$post_code2 = $_POST['post_code2'];
 	$post_code = $_POST['post_code'];
 	$max_cap = $_POST['max_cap'];
 	$v_desc = $_POST['v_desc'];
@@ -20,8 +18,6 @@ if (isset($_POST['venue_id'])) {
 	$query = "UPDATE venue SET
 	v_name = ?,
 	v_type = ?,
-	post_code1 = ?,
-	post_code2 = ?,
 	post_code = ?,
 	max_cap = ?,
 	v_desc = ?
@@ -34,8 +30,6 @@ if (isset($_POST['venue_id'])) {
 			"sssssisi",
 			$_POST['v_name'],
 			$_POST['v_type'],
-			$_POST['post_code1'],
-			$_POST['post_code2'],
 			$_POST['post_code'],
 			$_POST['max_cap'],
 			$_POST['v_desc'],

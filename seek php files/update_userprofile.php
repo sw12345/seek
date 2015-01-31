@@ -14,8 +14,7 @@ if (isset($_POST['user_id']))
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $phone_nmbr = $_POST['phone_nmbr'];
-    $post_code1 = $_POST['post_code1'];
-    $post_code2 = $_POST['post_code2'];
+    $address = $_POST['address'];
     $post_code = $_POST['post_code'];
     $birth_date = $_POST['birth_date'];
     $under_18 = $_POST['under_18'];
@@ -31,8 +30,7 @@ if (isset($_POST['user_id']))
     first_name = ?,
     last_name = ?,
 	phone_nmbr = ?,
-    post_code1 = ?,
-	post_code2 = ?,
+    address = ?,
 	post_code = ?,
 	birth_date = ?,
 	under_18 = ?,
@@ -40,28 +38,27 @@ if (isset($_POST['user_id']))
     int_tags = ?,
     use_currloc = ?,
     see_currloc = ?,
-    see_details = ?,
-	
+    see_details = ?
 	WHERE user_id = ?";
 
     //prepare statement
     if ($stmt = $conn->prepare($query))
     {
         $stmt->bind_param(
-            "issssssssssss",
-            $_POST['user_id'],
+            "ssssssssssssi",
             $_POST['first_name'],
             $_POST['last_name'],
             $_POST['phone_nmbr'],
-            $_POST['post_code1'],
-            $_POST['post_code2'],
+            $_POST['address'],
             $_POST['post_code'],
+            $_POST['birth_date'],
             $_POST['under_18'],
             $_POST['gender'],
             $_POST['int_tags'],
             $_POST['use_currloc'],
             $_POST['see_currloc'],
-            $_POST['see_details']);
+            $_POST['see_details'],
+            $_POST['user_id']);
 
         $stmt->execute();
 

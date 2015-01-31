@@ -340,13 +340,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int default_title_indicator_top_padding=0x7f06000c;
     }
     public static final class drawable {
-        public static int vpi__tab_indicator=0x7f020000;
-        public static int vpi__tab_selected_focused_holo=0x7f020001;
-        public static int vpi__tab_selected_holo=0x7f020002;
-        public static int vpi__tab_selected_pressed_holo=0x7f020003;
-        public static int vpi__tab_unselected_focused_holo=0x7f020004;
-        public static int vpi__tab_unselected_holo=0x7f020005;
-        public static int vpi__tab_unselected_pressed_holo=0x7f020006;
+        public static int tab_indicator_ab_example=0x7f020000;
+        public static int tab_selected_example=0x7f020001;
+        public static int tab_selected_focused_example=0x7f020002;
+        public static int tab_selected_pressed_example=0x7f020003;
+        public static int tab_unselected_example=0x7f020004;
+        public static int tab_unselected_focused_example=0x7f020005;
+        public static int tab_unselected_pressed_example=0x7f020006;
     }
     public static final class id {
         public static int bottom=0x7f080003;

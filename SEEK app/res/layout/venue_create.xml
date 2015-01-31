@@ -2,118 +2,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:padding="20dp"
     tools:context="com.compgc02.team26.seek.VenueCreate" >
 
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <TableRow android:layout_height="wrap_content" >
+        <TextView
+            android:id="@+id/venueTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/venue_title" />
 
-            <TextView
-                android:id="@+id/venueTitle"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/venue_title" />
+        <EditText
+            android:id="@+id/venueTitle_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
 
-            <EditText
-                android:id="@+id/venueTitle_input"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:inputType="text" />
+        <TextView
+            android:id="@+id/venueType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/type_text" />
 
-            <requestFocus />
-        </TableRow>
+        <Spinner
+            android:id="@+id/typeSpinner1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|fill_vertical"
+            android:layout_weight="1"
+            android:entries="@array/venue_type" />
 
-        <TableRow android:layout_height="wrap_content" >
+        <TextView
+            android:id="@+id/addresstext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/address" />
 
-            <TextView
-                android:id="@+id/venueType"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/type_text" />
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address_text"
+            android:inputType="text" />
 
-            <Spinner
-                android:id="@+id/typeSpinner1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|fill_vertical"
-                android:layout_weight="1"
-                android:entries="@array/venue_type" />
-        </TableRow>
+        <TextView
+            android:id="@+id/postCode"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/post_code_text" />
 
-        <TableRow android:layout_height="wrap_content" >
+        <EditText
+            android:id="@+id/postcode"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/postcode_hint"
+            android:inputType="textPostalAddress" />
 
-            <TextView
-                android:id="@+id/postCode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/post_code_text" />
+        <TextView
+            android:id="@+id/maxCap"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/max_cap" />
 
-            <EditText
-                android:id="@+id/postCode1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:inputType="textPostalAddress" />
+        <EditText
+            android:id="@+id/maxCap_input"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
 
-            <EditText
-                android:id="@+id/postCode2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:inputType="textPostalAddress" />
-        </TableRow>
+        <TextView
+            android:id="@+id/eventDescription"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/event_description" />
 
-        <TableRow android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/maxCap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/max_cap" />
-
-            <EditText
-                android:id="@+id/maxCap_input"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:inputType="number" />
-        </TableRow>
-
-        <TableRow android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/eventDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|fill_vertical"
-                android:text="@string/event_description" />
-
-            <EditText
-                android:id="@+id/eventDescription_input"
-                android:layout_width="fill_parent"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:background="@drawable/round"
-                android:gravity="top|left"
-                android:inputType="textMultiLine"
-                android:padding="8dp"
-                android:scrollHorizontally="false" />
-        </TableRow>
+        <EditText
+            android:id="@+id/eventDescription_input"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/round"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:padding="8dp"
+            android:scrollHorizontally="false" />
 
         <Button
             android:id="@+id/createButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/create_text" />
-    </TableLayout>
+    </LinearLayout>
 
 </ScrollView>

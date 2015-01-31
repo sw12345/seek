@@ -7,7 +7,7 @@ error_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPOR
 include 'db_connect.php';
 
 //make a query
-$query = "SELECT venue_id, v_name, v_type, post_code1, post_code2, post_code, max_cap, v_desc FROM venue";
+$query = "SELECT venue_id, v_name, v_type, post_code, max_cap, v_desc FROM venue";
 
 if ($result = $conn->query($query)) {
 
@@ -19,8 +19,6 @@ if ($result = $conn->query($query)) {
 			'name' => $row['v_name'],
 			'venueType' => $row['v_type'],
 			'maxCap' => $row['max_cap'],
-			'postcode1' => $row['post_code1'],
-			'postcode2' => $row['post_code2'],
 			'postCode' => $row['post_code'],
 			'description' => $row['v_desc']
 

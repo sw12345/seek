@@ -16,7 +16,8 @@ import org.json.JSONObject;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -29,7 +30,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -53,8 +53,8 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 	private EditText inputFirstName;
 	private EditText inputLastName;
 	private EditText inputPhone;
-	private EditText inputPostCode1;
-	private EditText inputPostCode2;
+	private EditText inputPostCode;
+	private EditText inputAddress;
 	private EditText inputInterests;
 	private EditText inputBirthDate;
 	private RadioGroup inputGender;
@@ -71,10 +71,10 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 	private static final String TAG = UserProfile.class.getSimpleName();
 
 	// url to edit profile
-	private static final String url_get_userprofile = "http://seek.wc.lt/seek/get_userprofile.php";
+	private static final String url_get_userprofile = "http://seek-app.wc.lt/get_userprofile.php";
 
 	// url to update profile
-	private static final String url_update_userprofile = "http://seek.wc.lt/seek/update_userprofile.php";
+	private static final String url_update_userprofile = "http://seek-app.wc.lt/update_userprofile.php";
 
 	// JSON node names
 	private static final String TAG_SUCCESS = "success";
@@ -85,6 +85,7 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_profile);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		// Session class instance
 		session = new SessionManager(getApplicationContext());
@@ -100,9 +101,7 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 
 		// Getting complete user profile in background thread
 		getUserProfile(userId);
-		
-		Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
-		
+
 		saveButton = (Button) findViewById(R.id.saveButton);
 
 		// Save button click profile
@@ -120,18 +119,18 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 	public void onDateSet(DatePicker view, int year, int month, int day) {
 		final Calendar myCalendar = Calendar.getInstance();
 		myCalendar.set(Calendar.YEAR, year);
-        myCalendar.set(Calendar.MONTH, month);
-        myCalendar.set(Calendar.DAY_OF_MONTH, day);
-        String myFormat = "dd/MM/yyyy"; // In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.UK);
-        inputBirthDate = (EditText) findViewById(R.id.birthInput);
+		myCalendar.set(Calendar.MONTH, month);
+		myCalendar.set(Calendar.DAY_OF_MONTH, day);
+		String myFormat = "yyyy-MM-dd"; // In which you need put here
+		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.UK);
+		inputBirthDate = (EditText) findViewById(R.id.birthInput);
 		inputBirthDate.setText(sdf.format(myCalendar.getTime()));
-    }
-	
+	}
+
 	public void datepickerClick (View view) {
-        DialogFragment DatePickerFragment = new DatePickerFragment();
-        DatePickerFragment.show(getSupportFragmentManager(), "datePicker");
-    }
+		DialogFragment DatePickerFragment = new DatePickerFragment();
+		DatePickerFragment.show(getSupportFragmentManager(), "datePicker");
+	}
 
 	/**
 	 * Getting user details in background thread
@@ -152,8 +151,8 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 					String firstname = users.getString("firstname");
 					String lastname = users.getString("lastname");
 					String phone = users.getString("phone");
-					String postcode1 = users.getString("postcode1");
-					String postcode2 = users.getString("postcode2");
+					String postcode = users.getString("postcode");
+					String address = users.getString("address");
 					String birthdate = users.getString("birthdate");
 					String under18 = users.getString("under18");
 					String gender = users.getString("gender");
@@ -166,8 +165,8 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 					inputFirstName = (EditText) findViewById(R.id.firstNameInput);
 					inputLastName = (EditText) findViewById(R.id.lastNameInput);
 					inputPhone = (EditText) findViewById(R.id.phoneInput);
-					inputPostCode1 = (EditText) findViewById(R.id.postcode1);
-					inputPostCode2 = (EditText) findViewById(R.id.postcode2);
+					inputPostCode = (EditText) findViewById(R.id.postcode);
+					inputAddress = (EditText) findViewById(R.id.address);
 					inputBirthDate = (EditText) findViewById(R.id.birthInput);
 					inputUnder18 = (CheckBox) findViewById(R.id.under18Check);
 					inputGender = (RadioGroup) findViewById(R.id.radioSex);
@@ -182,12 +181,13 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 					inputFirstName.setText(firstname);
 					inputLastName.setText(lastname);
 					inputPhone.setText(phone);
-					inputPostCode1.setText(postcode1);
-					inputPostCode2.setText(postcode2);
+					inputAddress.setText(address);
+					inputPostCode.setText(postcode);
+					inputAddress.setText(address);
 					inputBirthDate.setText(birthdate);
 					inputInterests.setText(interests);
-					
-					
+
+
 					if (currloc.equals("true")) {
 						inputCurrLoc.setChecked(true);
 					} else {
@@ -211,7 +211,7 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 					} else {
 						inputUnder18.setChecked(false);
 					}
-					
+
 					if (gender.equals("Male")) {
 						inputMale.setChecked(true);
 						inputFemale.setChecked(false);
@@ -289,9 +289,8 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 			String firstname = inputFirstName.getText().toString();
 			String lastname = inputLastName.getText().toString();
 			String phone = inputPhone.getText().toString();
-			String postcode1 = inputPostCode1.getText().toString().toUpperCase(Locale.getDefault());
-			String postcode2 = inputPostCode2.getText().toString().toUpperCase(Locale.getDefault());
-			String postCode = inputPostCode1.getText().toString().toUpperCase(Locale.getDefault()) + inputPostCode2.getText().toString().toUpperCase(Locale.getDefault());
+			String address = inputAddress.getText().toString().toUpperCase(Locale.getDefault());
+			String postcode = inputPostCode.getText().toString().toUpperCase(Locale.getDefault());
 			String under18 = inputUnder18.getText().toString();
 			String gender = responseText.append(myOption.getText()).toString();
 			String interests = inputInterests.getText().toString();
@@ -300,15 +299,20 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 			String contdetails = inputContDetails.getText().toString();
 			String birthdate = inputBirthDate.getText().toString();			
 
+			// get user data from sessionnn
+			HashMap<String, String> user = session.getUserDetails();
+
+			// name
+			String userId = user.get(SessionManager.KEY_ID);
+			
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("user_id", userId));
 			params.add(new BasicNameValuePair("first_name", firstname));
 			params.add(new BasicNameValuePair("last_name", lastname));
 			params.add(new BasicNameValuePair("phone_nmbr", phone));
-			params.add(new BasicNameValuePair("post_code1", postcode1));
-			params.add(new BasicNameValuePair("post_code2", postcode2));
-			params.add(new BasicNameValuePair("post_code", postCode));
+			params.add(new BasicNameValuePair("address", address));
+			params.add(new BasicNameValuePair("post_code", postcode));
 			params.add(new BasicNameValuePair("under_18", under18));
 			params.add(new BasicNameValuePair("gender", gender));
 			params.add(new BasicNameValuePair("int_tags", interests));

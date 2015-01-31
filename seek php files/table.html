@@ -1,66 +1,101 @@
-CREATE TABLE register(  
-    user_id int(11) AUTO_INCREMENT,
-    PRIMARY KEY(user_id),
-    first_name varchar(50) not null,
-    last_name varchar(50) not null,
-    email_address varchar(50) not null,
-terms_cond varchar(50) not null,
-    user_pass varchar(50) not null,
-    created_at timestamp default now(),
-    updated_at timestamp,    
-    ) ENGINE=INNODB;
-
-CREATE TABLE user(
+CREATE TABLE users(
         user_id int(11) not null,
         PRIMARY KEY(user_id),
-        phone_nmbr int(11) not null,
-        post_code varchar(50) not null,
-        birth_date varchar(50) not null,
-        under_18 varchar(50) not null,
-        gender varchar(50) not null,
-        expertise varchar(50) not null,
-        int_tags text not null,
-        use_currloc varchar(50) not null,
-        see_currloc varchar(50) not null,
-        see_details varchar(50) not null,
-        updated_at timestamp
-	CONSTRAINT FOREIGN KEY (user_id)
-    	REFERENCES register(user_id)
-    	ON DELETE CASCADE ON UPDATE CASCADE
-        ) ENGINE=INNODB;
-        
+	first_name varchar(50) NOT NULL,
+	last_name varchar(50) NOT NULL,
+	email_address varchar(50) NOT NULL,
+	user_pass varchar(50) NOT NULL,
+	terms_cond varchar(10) NOT NULL,
+	phone_nmbr varchar(50) NOT NULL,
+	address varchar(255) NOT NULL,
+	post_code1 varchar(50) NOT NULL,
+	post_code2 varchar(50) NOT NULL,
+	post_code varchar(50) NOT NULL,
+	latitude decimal(9,6) NOT NULL,
+	longitude decimal(9,6) NOT NULL,
+	birth_date date NOT NULL,
+	under_18 varchar(50) NOT NULL,
+	gender varchar(50) NOT NULL,
+	int_tags varchar(255) NOT NULL,
+	use_currloc varchar(50) NOT NULL,
+	see_currloc varchar(50) NOT NULL,
+	see_details varchar(50) NOT NULL,
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+    ) ENGINE=INNODB;
+
 
     
 CREATE TABLE venue(
-    venue_id int(11) AUTO_INCREMENT,
-    user_id int(11) not null,
-    v_name varchar(50) not null,
-    v_type varchar(50) not null,
-    post_code varchar(50) not null,
-    max_cap int(11) not null,
-    v_desc text not null,
-    created_at timestamp default now(),
-    updated_at timestamp,
-    PRIMARY KEY(venue_id),
-    CONSTRAINT FOREIGN KEY (user_id)
-    REFERENCES register(user_id)
-    ON DELETE CASCADE ON UPDATE CASCADE
+	venue_id int(11) NOT NULL,
+ 
+	PRIMARY KEY(venue_id),
+	user_id int(11) NOT NULL,
+ 
+	v_name varchar(50) NOT NULL,
+  
+	v_type varchar(50) NOT NULL,
+ 
+	address varchar(255) NOT NULL,
+  	
+	post_code1 varchar(50) NOT NULL,
+ 
+	post_code2 varchar(50) NOT NULL,
+ 
+	post_code varchar(50) NOT NULL,
+ 
+	latitude decimal(9,6) NOT NULL,
+ 
+	longitude decimal(9,6) NOT NULL,
+  
+	max_cap int(11) NOT NULL,
+ 
+	v_desc text NOT NULL,
+ 
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ 
+	updated_at timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+
     ) ENGINE=INNODB;
     
+
 CREATE TABLE event (
-    event_id int(11) AUTO_INCREMENT,
-    user_id int(11) not null,
-    e_name varchar(50) not null,
-    start_date varchar(50) not null,
-    end_date varchar(50) not null,
-    post_code varchar(50) not null,
-    max_cap int(11)not null,
-    e_desc text not null,
-    created_at timestamp default now(),
-    updated_at timestamp,
-    PRIMARY KEY(event_id),
-    CONSTRAINT FOREIGN KEY (user_id)
-    REFERENCES register(user_id)
-    ON DELETE CASCADE ON UPDATE CASCADE
+	event_id int(11) NOT NULL AUTO_INCREMENT,
+
+	PRIMARY KEY (event_id),
+	user_id int(11) NOT NULL,
+
+	e_name varchar(50) NOT NULL,
+
+	start_date date NOT NULL,
+
+	end_date date NOT NULL,
+
+	address varchar(255) NOT NULL,
+
+	post_code1 varchar(50) NOT NULL,
+
+	post_code2 varchar(50) NOT NULL,
+
+	post_code varchar(50) NOT NULL,
+
+	latitude decimal(9,6) NOT NULL,
+
+	longitude decimal(9,6) NOT NULL,
+
+	max_cap int(11) NOT NULL,
+
+	reg_link varchar(255) NOT NULL,
+
+	e_desc text NOT NULL,
+
+	created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+	updated_at timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
     ) ENGINE=INNODB;
-    
+
+ALTER TABLE borrowed 
+ADD CONSTRAINT FK_borrowed 
+FOREIGN KEY (employeeid) REFERENCES employee(id) 
+ON UPDATE CASCADE
+ON DELETE CASCADE;

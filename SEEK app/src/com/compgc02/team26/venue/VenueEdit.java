@@ -3,17 +3,17 @@ package com.compgc02.team26.venue;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -41,8 +41,8 @@ public class VenueEdit extends SherlockFragmentActivity {
 	private ProgressDialog pDialog;
 
 	private EditText inputVenueName;
-	private EditText inputPostCode1;
-	private EditText inputPostCode2;
+	private EditText inputAddress;
+	private EditText inputPostCode;
 	private EditText inputMaxCap;
 	private EditText inputDescription;
 	private Spinner inputSpinner;
@@ -57,29 +57,24 @@ public class VenueEdit extends SherlockFragmentActivity {
 	private static final String TAG = VenueEdit.class.getSimpleName();
 
 	// url to edit venue
-	private static final String url_venue_details = "http://seek.wc.lt/seek/get_venue_details.php";
+	private static final String url_venue_details = "http://seek-app.wc.lt/get_venue_details.php";
 
 	// url to update venue
-	private static final String url_update_venue = "http://seek.wc.lt/seek/update_venue.php";
+	private static final String url_update_venue = "http://seek-app.wc.lt/update_venue.php";
 
 	// url to delete venue
-	private static final String url_delete_venue = "http://seek.wc.lt/seek/delete_venue.php";
+	private static final String url_delete_venue = "http://seek-app.wc.lt/delete_venue.php";
 
 	// JSON node names
 	private static final String TAG_SUCCESS = "success";
-	private static final String TAG_VENUE = "venue";
 	private static final String TAG_VID = "venueId";
-	private static final String TAG_NAME = "name";
-	private static final String TAG_POSTCODE1 = "postcode1";
-	private static final String TAG_POSTCODE2 = "postcode2";
-	private static final String TAG_MAXCAP = "maxCap";
-	private static final String TAG_DESCRIPTION = "description";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.venue_edit);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		saveButton = (Button) findViewById(R.id.saveButton);
 
@@ -121,9 +116,7 @@ public class VenueEdit extends SherlockFragmentActivity {
 	 * */
 	private void getVenueDetails(final String venue_id) {
 
-		//rq = Volley.newRequestQueue(this);
-
-		StringRequest postReq2 = new StringRequest(Request.Method.POST, "http://seek.wc.lt/seek/get_venue_details.php", new Response.Listener<String>() {
+		StringRequest postReq2 = new StringRequest(Request.Method.POST, url_venue_details, new Response.Listener<String>() {
 
 			@Override
 			public void onResponse(String response) {
@@ -134,26 +127,24 @@ public class VenueEdit extends SherlockFragmentActivity {
 					JSONObject venue = new JSONObject(response);
 					String name = venue.getString("name");
 					String maxCap = venue.getString("maxCap");
-					String postcode1 = venue.getString("postcode1");
-					String postcode2 = venue.getString("postcode2");
+					String address = venue.getString("address");
+					String postcode = venue.getString("postcode");
 					String description = venue.getString("description");
 
 					// Found venue with this venueId
 					inputVenueName = (EditText) findViewById(R.id.venueTitle_input);
-					inputPostCode1 = (EditText) findViewById(R.id.postCode1);
-					inputPostCode2 = (EditText) findViewById(R.id.postCode2);
+					inputAddress = (EditText) findViewById(R.id.address);
+					inputPostCode = (EditText) findViewById(R.id.postcode);
 					inputMaxCap = (EditText) findViewById(R.id.maxCap_input);
-					inputDescription = (EditText) findViewById(R.id.eventDescription_input);
+					inputDescription = (EditText) findViewById(R.id.venueDescription_input);
 
 					// Set edit text
 					inputVenueName.setText(name);
 					//inputSpinner.getSelectedItem().toString();
-					inputPostCode1.setText(postcode1);
-					inputPostCode2.setText(postcode2);
+					inputAddress.setText(address);
+					inputPostCode.setText(postcode);
 					inputMaxCap.setText(maxCap);
 					inputDescription.setText(description);
-
-
 
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -167,8 +158,6 @@ public class VenueEdit extends SherlockFragmentActivity {
 			public void onErrorResponse(VolleyError error) {
 				VolleyLog.d(TAG, "Error: " + error.getMessage());
 				Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-
-
 			}
 
 		})  {
@@ -182,8 +171,6 @@ public class VenueEdit extends SherlockFragmentActivity {
 
 		};
 		Controller.getInstance().addToRequestQueue(postReq2);
-		//rq.add(postReq2);
-
 	}
 
 	/**
@@ -212,9 +199,8 @@ public class VenueEdit extends SherlockFragmentActivity {
 			// Getting updated data from EditTexts
 			String name = inputVenueName.getText().toString();
 			String type = inputSpinner.getSelectedItem().toString();
-			String postcode1 = inputPostCode1.getText().toString();
-			String postcode2 = inputPostCode2.getText().toString();
-			String postCode = inputPostCode1.getText().toString().toUpperCase(Locale.getDefault()) + inputPostCode2.getText().toString().toUpperCase(Locale.getDefault());
+			String address = inputAddress.getText().toString();
+			String postcode = inputPostCode.getText().toString();
 			String maxCap = inputMaxCap.getText().toString();
 			String description = inputDescription.getText().toString();
 
@@ -223,9 +209,8 @@ public class VenueEdit extends SherlockFragmentActivity {
 			params.add(new BasicNameValuePair("venue_id", venueId));
 			params.add(new BasicNameValuePair("v_name", name));
 			params.add(new BasicNameValuePair("v_type", type));
-			params.add(new BasicNameValuePair("post_code1", postcode1));
-			params.add(new BasicNameValuePair("post_code2", postcode2));
-			params.add(new BasicNameValuePair("post_code", postCode));
+			params.add(new BasicNameValuePair("address", address));
+			params.add(new BasicNameValuePair("post_code", postcode));
 			params.add(new BasicNameValuePair("max_cap", maxCap));
 			params.add(new BasicNameValuePair("v_desc", description));
 

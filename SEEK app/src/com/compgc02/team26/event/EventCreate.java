@@ -9,12 +9,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.compgc02.samsudin.seek.R;
-import com.compgc02.team26.datepicker.DatePickerFragment;
-import com.compgc02.team26.datepicker.DatePickerFragment2;
-import com.compgc02.team26.datepicker.DatePickerFragment3;
-import com.compgc02.team26.seek.JSONParser;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -24,12 +18,19 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class EventCreate extends Fragment  {
+import com.compgc02.samsudin.seek.R;
+import com.compgc02.team26.datepicker.DatePickerFragment;
+import com.compgc02.team26.datepicker.DatePickerFragment2;
+import com.compgc02.team26.datepicker.DatePickerFragment3;
+import com.compgc02.team26.seek.JSONParser;
+
+public class EventCreate extends Fragment implements OnClickListener {
 
 	// Create JSON Parser object
 	JSONParser jParser = new JSONParser();
@@ -39,16 +40,14 @@ public class EventCreate extends Fragment  {
 	private EditText inputEventName;
 	private EditText inputStartDate;
 	private EditText inputEndDate;
-	private EditText inputPostCode1;
-	private EditText inputPostCode2;
+	private EditText inputPostCode;
+	private EditText inputAddress;
 	private EditText inputMaxCap;
 	private EditText inputRegLink;
 	private EditText inputDescription;
 
-	Button createButton;
-
 	// url to create event
-	private static String url_create_event = "http://seek.wc.lt/seek/create_event.php";
+	private static String url_create_event = "http://seek-app.wc.lt/create_event.php";
 
 	// JSON nodes names
 	private static final String TAG_SUCCESS = "success";
@@ -62,14 +61,19 @@ public class EventCreate extends Fragment  {
 		inputEventName = (EditText)rootView.findViewById(R.id.eventTitle_input);
 		inputStartDate = (EditText)rootView.findViewById(R.id.startDate_input);
 		inputEndDate = (EditText)rootView.findViewById(R.id.endDate_input);
-		inputPostCode1 = (EditText)rootView.findViewById(R.id.postCode1);
-		inputPostCode2 = (EditText)rootView.findViewById(R.id.postCode2);
+		inputPostCode = (EditText)rootView.findViewById(R.id.postcode);
+		inputAddress = (EditText)rootView.findViewById(R.id.address);
 		inputMaxCap = (EditText)rootView.findViewById(R.id.maxCap_input);
 		inputRegLink = (EditText)rootView.findViewById(R.id.urlLink_input);
 		inputDescription = (EditText)rootView.findViewById(R.id.eventDescription_input);		
 
 		// Find create button
-		createButton = (Button) rootView.findViewById(R.id.createButton);
+		final Button createButton = (Button)rootView.findViewById(R.id.createButton);
+
+		// Button click venue
+		createButton.setOnClickListener(this);
+
+		/*createButton = (Button) rootView.findViewById(R.id.createButton);
 
 		createButton.setOnClickListener(new View.OnClickListener() {
 
@@ -78,11 +82,10 @@ public class EventCreate extends Fragment  {
 				// Starting background task to update profile
 				new CreateNewEvent().execute();
 			}
-		});
+		});*/
 
+		// Date picker for event start date
 		inputStartDate = (EditText) rootView.findViewById(R.id.startDate_input);
-
-		// Save button click profile
 		inputStartDate.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -108,6 +111,14 @@ public class EventCreate extends Fragment  {
 
 		return rootView;
 	}	
+
+	// Create button clicked, create new venue in background thread
+	@Override
+	public void onClick (View v) {
+		if (v.getId() == R.id.createButton){
+			new CreateNewEvent().execute();
+		}
+	}
 
 	public void startDate_input (View view) {
 		DialogFragment DatePickerFragment = new DatePickerFragment();
@@ -141,9 +152,8 @@ public class EventCreate extends Fragment  {
 			String e_name = inputEventName.getText().toString();
 			String start_date = inputStartDate.getText().toString();
 			String end_date = inputEndDate.getText().toString();
-			String post_code1 = inputPostCode1.getText().toString().toUpperCase(Locale.getDefault());
-			String post_code2 = inputPostCode2.getText().toString().toUpperCase(Locale.getDefault());
-			String post_code = inputPostCode1.getText().toString().toUpperCase(Locale.getDefault()) + inputPostCode2.getText().toString().toUpperCase(Locale.getDefault());
+			String address = inputAddress.getText().toString();
+			String post_code = inputPostCode.getText().toString().toUpperCase(Locale.getDefault());
 			String max_cap = inputMaxCap.getText().toString();
 			String reg_link = inputRegLink.getText().toString();
 			String e_desc = inputDescription.getText().toString();
@@ -153,8 +163,7 @@ public class EventCreate extends Fragment  {
 			params.add(new BasicNameValuePair("start_date", start_date));
 			params.add(new BasicNameValuePair("end_date", end_date));
 			params.add(new BasicNameValuePair("e_name", e_name));
-			params.add(new BasicNameValuePair("post_code1", post_code1));
-			params.add(new BasicNameValuePair("post_code2", post_code2));
+			params.add(new BasicNameValuePair("address", address));
 			params.add(new BasicNameValuePair("post_code", post_code));
 			params.add(new BasicNameValuePair("max_cap", max_cap));
 			params.add(new BasicNameValuePair("reg_link", reg_link));
@@ -197,9 +206,6 @@ public class EventCreate extends Fragment  {
 			if (file_url != null){
 				Toast.makeText(getActivity(), file_url, Toast.LENGTH_LONG).show();
 			}
-
 		}
-
 	}
-
 }

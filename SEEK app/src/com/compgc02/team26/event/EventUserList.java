@@ -1,13 +1,24 @@
 package com.compgc02.team26.event;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -17,22 +28,6 @@ import com.compgc02.samsudin.seek.R;
 import com.compgc02.team26.seek.Controller;
 import com.compgc02.team26.seek.JSONParser;
 import com.compgc02.team26.seek.SessionManager;
-
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 public class EventUserList extends Fragment {
 
@@ -45,19 +40,14 @@ public class EventUserList extends Fragment {
 	private static final String TAG = EventUserList.class.getSimpleName();
 
 	// Venue json URL
-	private static final String url = "http://seek.wc.lt/seek/get_userlist_event.php";
+	private static final String url = "http://seek-app.wc.lt/get_userlist_event.php";
 	private ProgressDialog pd;
 	private List<Event> eventList = new ArrayList<Event>();
 	private ListView lv;
 	private EventCustomListAdapter adapter;	
 
 	// JSON nodes name
-	private static final String TAG_SUCCESS = "success";
-	private static final String TAG_EVENT = "event";
 	private static final String TAG_EID = "eventId";
-	private static final String TAG_NAME = "name";
-	private static final String TAG_URL = "regLink";
-	private static final String TAG_MAXCAP = "maxCap";
 
 	// JSONArray events
 	JSONArray event = null;
@@ -102,9 +92,9 @@ public class EventUserList extends Fragment {
 						event.setId(obj.getString("eventId"));
 						event.setTitle(obj.getString("name"));
 						event.setPostcode(obj.getString("postCode"));
-						// venue.setDistance(distance); --> query result
+						// event.setDistance(distance); --> query result
 
-						// Adding venue to array
+						// Adding event to array
 						eventList.add(event);	
 
 					} catch (JSONException e) {
@@ -129,7 +119,7 @@ public class EventUserList extends Fragment {
 		// Adding request to request queue
 		Controller.getInstance().addToRequestQueue(eventReq);
 
-		// On selecting single venue, launch edit venue activity
+		// On selecting single event, launch edit event activity
 		lv.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override

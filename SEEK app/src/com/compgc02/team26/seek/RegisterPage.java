@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -43,7 +45,7 @@ public class RegisterPage extends SherlockFragmentActivity implements OnClickLis
 	private CheckBox checkBox;
 
 	// url to register user
-	private static String url_register = "http://seek.wc.lt/seek/register.php";
+	private static String url_register = "http://seek-app.wc.lt/register.php";
 
 	// JSON nodes names
 	private static final String TAG_SUCCESS = "success";
@@ -53,6 +55,7 @@ public class RegisterPage extends SherlockFragmentActivity implements OnClickLis
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register_page);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		// User input
 		inputFirstName = (EditText) findViewById(R.id.firstName);

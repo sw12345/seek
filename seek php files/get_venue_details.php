@@ -9,7 +9,7 @@ include 'db_connect.php';
 if(isset($_POST['venue_id'])) { $venue_id = $_POST['venue_id']; }
 
 //make a query
-$query = "SELECT v_name, v_type, address, post_code1, post_code2, post_code, max_cap, v_desc FROM venue WHERE venue_id = ?";
+$query = "SELECT venue_id, v_name, v_type, address, post_code, max_cap, v_desc FROM venue WHERE venue_id = ?";
 
 if ($stmt = $conn->prepare($query)) {
 	$stmt-> bind_param('i', $venue_id);
@@ -17,7 +17,7 @@ if ($stmt = $conn->prepare($query)) {
 	//send query to db
 	$stmt-> execute();
 	$stmt->store_result();
-	$stmt->bind_result($v_name, $v_type, $address, $post_code1, $post_code2, $post_code, $max_cap, $v_desc);
+	$stmt->bind_result($venue_id, $v_name, $v_type, $address, $post_code, $max_cap, $v_desc);
 
 	//fetch values by looping through each row
 	while ($stmt->fetch()) {
@@ -27,9 +27,7 @@ if ($stmt = $conn->prepare($query)) {
 			'type' => $v_type,
 			'address' => $address,
 			'maxCap' => $max_cap,
-			'postcode1' => $post_code1,
-			'postcode2' => $post_code2,
-			'postCode' => $post_code,
+			'postcode' => $post_code,
 			'description' => $v_desc
 		);
 		json_encode($jsonResponse);

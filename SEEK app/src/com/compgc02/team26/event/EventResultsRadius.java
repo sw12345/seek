@@ -12,6 +12,8 @@ import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -50,9 +52,7 @@ public class EventResultsRadius extends SherlockFragmentActivity implements Loca
 	private static final String TAG = EventResultsRadius.class.getSimpleName();
 
 	// Event json URL
-	//private static final String url_text = "http://seek.wc.lt/seek/get_userlist_event.php";
-	private static final String url_radius = "http://seek.wc.lt/seek/search_event_radius.php";
-	private static final String url_postcode = "http://seek.wc.lt/seek/search_event_postcode.php";
+	private static final String url_radius = "http://seek-app.wc.lt/search_event_radius.php";
 
 	private static final String INTENT_KEY = "intentkey";
 	private ProgressDialog pd;
@@ -64,6 +64,7 @@ public class EventResultsRadius extends SherlockFragmentActivity implements Loca
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.event_userlist);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		// GPS
 		locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -82,22 +83,11 @@ public class EventResultsRadius extends SherlockFragmentActivity implements Loca
 		pd.setMessage("Loading..."); // Show this while the list is loading
 		pd.show();
 
-		// Search events using keyword
-		/*	Intent intent3 = getIntent();
-		String keyword = intent3.getStringExtra(INTENT_KEY);
-		keywordSearch(keyword);
-		 */
 		// Search events within xx radius from user's current location
 		Intent intent = getIntent();
 
 		String radius = intent.getStringExtra(INTENT_KEY);
 		radiusEvent(radius, latitude, longitude);
-
-		/*String post_code = intent.getStringExtra(INTENT_KEY);
-		postcodeSearch(post_code);*/
-
-
-
 
 		// On selecting single event, launch edit event activity
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -109,7 +99,7 @@ public class EventResultsRadius extends SherlockFragmentActivity implements Loca
 
 				// Starting new intent
 				Intent intent = new Intent(getApplicationContext(), EventDetails.class);
-				// Sending venueId to next activity
+				// Sending eventId to next activity
 				intent.putExtra(TAG_EID, eventId);
 
 				// Starting new activity and expecting some response back

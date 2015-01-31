@@ -37,7 +37,7 @@ public class DatePickerFragment3 extends DialogFragment implements DatePickerDia
 		myCalendar.set(Calendar.YEAR, year);
 		myCalendar.set(Calendar.MONTH, month);
 		myCalendar.set(Calendar.DAY_OF_MONTH, day);
-		String myFormat = "dd/MM/yyyy"; // In which you need put here
+		String myFormat = "yyyy-MM-dd"; // In which you need put here
 		SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.UK);
 
 		inputEndDate = (EditText) getActivity().findViewById(R.id.endDate_input);

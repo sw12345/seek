@@ -1,5 +1,7 @@
 package com.compgc02.team26.venue;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -28,6 +30,7 @@ public class VenueActivity extends SherlockFragmentActivity {
 
 		setContentView(R.layout.activity_tabbed);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		mAdapter = new FragmentAdapter(getSupportFragmentManager());
 

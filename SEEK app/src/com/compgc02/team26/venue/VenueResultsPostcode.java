@@ -11,6 +11,8 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
@@ -43,7 +45,7 @@ public class VenueResultsPostcode extends SherlockFragmentActivity {
 	private static final String INTENT_KEY = "intentkey";
 
 	// Venue json URL
-	private static final String url_postcode = "http://seek.wc.lt/seek/search_venue_postcode.php";
+	private static final String url_postcode = "http://seek-app.wc.lt/search_venue_postcode.php";
 
 	private ProgressDialog pd;
 	private List<Venue> venueList = new ArrayList<Venue>();
@@ -54,6 +56,7 @@ public class VenueResultsPostcode extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.event_userlist);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		lv = (ListView) findViewById(R.id.list);
 		adapter = new VenueCustomListAdapter(this, venueList);

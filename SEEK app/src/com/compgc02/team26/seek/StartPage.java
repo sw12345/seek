@@ -57,16 +57,17 @@ public class StartPage extends SherlockFragmentActivity implements OnClickListen
 	String email;
 
 	// url to log user in
-	private static String url_login = "http://seek.wc.lt/seek/login.php";
+	private static String url_login = "http://seek-app.wc.lt/login.php";
 	
 
 	// url to create session
-	private String url_session = "http://seek.wc.lt/seek/get_session.php";
+	private String url_session = "http://seek-app.wc.lt/get_session.php";
 
 	// JSON nodes names
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_MESSAGE = "message";
 
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.start_page);
@@ -80,8 +81,6 @@ public class StartPage extends SherlockFragmentActivity implements OnClickListen
 		session = new SessionManager(getApplicationContext());
 		
 		email_address = inputEmail.getText().toString();
-		storeSession(email_address);
-		Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
 
 		// Login button
 		final Button loginButton = (Button) findViewById(R.id.loginButton);
@@ -149,6 +148,7 @@ public class StartPage extends SherlockFragmentActivity implements OnClickListen
 					// Successfully logged user	
 					Log.d("Login successful!", json.toString());
 					Intent intent = new Intent(getApplicationContext(), HomePage.class);
+					storeSession(email_address);
 					startActivity(intent);
 					finish();
 					return json.getString(TAG_MESSAGE);
@@ -199,7 +199,7 @@ public class StartPage extends SherlockFragmentActivity implements OnClickListen
 
 				} catch (JSONException e) {
 					e.printStackTrace();
-					//Toast.makeText(getApplicationContext(), "Error222222: " + e.getMessage(), Toast.LENGTH_LONG).show();				
+					Toast.makeText(getApplicationContext(), "Error222222: " + e.getMessage(), Toast.LENGTH_LONG).show();				
 				}
 
 			}

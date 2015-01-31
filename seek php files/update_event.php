@@ -12,8 +12,6 @@ if (isset($_POST['event_id'])) {
 	$start_date = $_POST['start_date'];
 	$end_date = $_POST['end_date'];
 	$reg_link = $_POST['reg_link'];
-	$post_code1 = $_POST['post_code1'];
-	$post_code2 = $_POST['post_code2'];
 	$post_code = $_POST['post_code'];
 	$max_cap = $_POST['max_cap'];
 	$e_desc = $_POST['e_desc'];
@@ -24,8 +22,6 @@ if (isset($_POST['event_id'])) {
 	start_date = ?,
 	end_date = ?,
 	reg_link = ?,
-	post_code1 = ?,
-	post_code2 = ?,
 	post_code = ?,
 	max_cap = ?,
 	e_desc = ?
@@ -40,8 +36,6 @@ if (isset($_POST['event_id'])) {
 			$_POST['start_date'],
 			$_POST['end_date'],
 			$_POST['reg_link'],
-			$_POST['post_code1'],
-			$_POST['post_code2'],
 			$_POST['post_code'],
 			$_POST['max_cap'],
 			$_POST['e_desc'],

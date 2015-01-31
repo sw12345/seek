@@ -7,12 +7,12 @@
     <string name="tab_page_num_menu">This is tab with menu: </string>
     <string name="menu_item_refresh">Refresh</string>
     <string name="profile_text">Edit Profile</string>
-    <string name="first_name_text">First Name</string>
-    <string name="last_name_text">Last Name</string>
+    <string name="first_name_text">First Name:</string>
+    <string name="last_name_text">Last Name:</string>
     <string name="interest_tags_text">Interest Tags:</string>
     <string name="post_code_text">Post Code:</string>
-    <string name="phone_text">Phone Number</string>
-    <string name="dob_text">Date of Birth</string>
+    <string name="phone_text">Phone Number:</string>
+    <string name="dob_text">Date of Birth:</string>
     <string name="use_current_location">Use my current location</string>
     <string name="others_current_location">Others can see my current details</string>
     <string name="others_contact_details">Others can see my contact details</string>
@@ -32,7 +32,7 @@
     <string name="title_activity_tab_fragment">Tab Fragment</string>
     <string name="title_activity_event">Event</string>
     <string name="title_activity_contact">Contact</string>
-    <string name="title_activity_user_profile">UserProfile</string>
+    <string name="title_activity_user_profile">Edit Profile</string>
     <string name="title_activity_start_page">Start Page</string>
     <string name="password_hint">Password</string>
     <string name="forget_password">Forget password?</string>
@@ -121,6 +121,7 @@
     <string name="send_msg">Send message to UnLtd</string>
     <string name="email">Email address:</string>
     <string name="write">Write something here...</string>
+    <string name="address_text">e.g 87,Godolphin Road,London</string>
     <string name="contact_activity">Contact</string>
     <string name="event_activity">Event</string>
     <string name="venue_activity">Venue</string>
@@ -133,6 +134,8 @@
     <string name="search_radius2">e.g. 5</string>
     <string name="search_freetext">Search keyword:</string>
     <string name="search_postcode">Search by postcode or place:</string>
+    <string name="postcode_hint">e.g. N7 9BA</string>
+    <string name="phone_hint">e.g. 07489520036</string>
     <string name="search_postcode2">e.g. N79BA or London or Leyton</string>
     <string name="search_by_email">Search by email address:</string>
     <string name="subject">Subject:</string>
@@ -196,6 +199,7 @@
         <item>Events</item>
         <item>Mentoring</item>
         <item>Resources</item>
+        <item>Others</item>
     </string-array>
     <string-array name="expertiseSpinner">
         <item>Business</item>

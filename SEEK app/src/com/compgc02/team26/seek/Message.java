@@ -1,6 +1,8 @@
 package com.compgc02.team26.seek;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.View;
@@ -26,6 +28,7 @@ public class Message extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.message);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		subject = (EditText) findViewById(R.id.subject);
 		message = (EditText) findViewById(R.id.msg_content);
@@ -41,7 +44,7 @@ public class Message extends SherlockFragmentActivity {
 				msgtype = type.getSelectedItem().toString();
 				Intent intent = new Intent(Intent.ACTION_SEND);
 				intent.setType("text/email");
-				intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "captain.bomi@gmail.com" });
+				intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "izzatul.samsudin@gmail.com" });
 				intent.putExtra(Intent.EXTRA_SUBJECT, "(" + msgtype + ") " + sub);
 				intent.putExtra(Intent.EXTRA_TEXT, msg);
 				startActivity(Intent.createChooser(intent, "Send message to UnLtd..."));

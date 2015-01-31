@@ -9,7 +9,7 @@ include 'db_connect.php';
 /*if(isset($_POST['user_id'])) { $email_address = $_POST['user_id']; }*/
 
 //make a query
-$query = "SELECT event_id, e_name, post_code1, post_code2, post_code, max_cap, reg_link, e_desc FROM event";
+$query = "SELECT event_id, e_name, post_code, max_cap, reg_link, e_desc FROM event";
 
 if ($result = $conn->query($query)) {
 /*	$stmt-> bind_param('i', $user_id);
@@ -25,8 +25,6 @@ if ($result = $conn->query($query)) {
 			'eventId' => $row['event_id'],
 			'name' => $row['e_name'],
 			'maxCap' => $row['max_cap'],
-			'postcode1' => $row['post_code1'],
-			'postcode2' => $row['post_code2'],
 			'postCode' => $row['post_code'],
 			'regLink' => $row['reg_link'],
 			'description' => $row['e_desc']

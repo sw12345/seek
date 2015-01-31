@@ -4,13 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import com.compgc02.team26.seek.UserProfile;
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.widget.EditText;
+
+import com.compgc02.team26.seek.UserProfile;
 
 public class DatePickerFragment extends DialogFragment {
 

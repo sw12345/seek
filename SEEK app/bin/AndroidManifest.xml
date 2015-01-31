@@ -105,7 +105,7 @@
         </activity>
         <activity
             android:name="com.compgc02.team26.event.EventEdit"
-            android:label="@string/title_activity_event_create"
+            android:label="@string/title_activity_event_edit"
             android:parentActivityName="com.compgc02.team26.event.EventActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

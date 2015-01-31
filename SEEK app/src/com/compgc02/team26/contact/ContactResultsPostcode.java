@@ -11,6 +11,8 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
@@ -33,10 +35,9 @@ import com.compgc02.samsudin.seek.R;
 import com.compgc02.team26.seek.Controller;
 import com.compgc02.team26.seek.SessionManager;
 
-
 public class ContactResultsPostcode extends SherlockFragmentActivity {
 
-	private static final String TAG_UID = "eventId";
+	private static final String TAG_UID = "userId";
 
 	// Log tag
 	private static final String TAG = ContactResultsPostcode.class.getSimpleName();
@@ -44,7 +45,7 @@ public class ContactResultsPostcode extends SherlockFragmentActivity {
 	private static final String INTENT_KEY = "intentkey"; 
 
 	// URL
-	private static final String url_postcode = "http://seek.wc.lt/seek/search_contact_postcode.php";
+	private static final String url_postcode = "http://seek-app.wc.lt/search_contact_postcode.php";
 
 	private ProgressDialog pd;
 	private List<Contact> contactList = new ArrayList<Contact>();
@@ -57,6 +58,7 @@ public class ContactResultsPostcode extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.event_userlist);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		/*// Session class instance
 		session = new SessionManager(getApplicationContext());
@@ -68,7 +70,7 @@ public class ContactResultsPostcode extends SherlockFragmentActivity {
 		HashMap<String, String> user = session.getUserDetails();
 		String email = user.get(SessionManager.KEY_EMAIL);*/
 
-		// Search contacts within 10 km radius from postcode/places given by user (only displayer user above 18 years old)
+		// Search contacts within 10 km radius from postcode/places given by user (only display user above 18 years old)
 		Intent intent = getIntent();
 		String post_code = intent.getStringExtra(INTENT_KEY);
 		postcodeSearch(post_code);

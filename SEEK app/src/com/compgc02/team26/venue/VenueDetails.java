@@ -7,9 +7,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,14 +38,13 @@ public class VenueDetails extends SherlockFragmentActivity {
 
 	private static final String TAG_VID = "venueId";
 	private static final String TAG = VenueDetails.class.getSimpleName();
-	private static final String url_venue_details = "http://seek.wc.lt/seek/get_venue_details.php";
+	private static final String url_venue_details = "http://seek-app.wc.lt/get_venue_details.php";
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.venue_details);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		// Getting venue details from intent
 		Intent intent = getIntent();

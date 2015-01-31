@@ -3,17 +3,17 @@ package com.compgc02.team26.event;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -22,7 +22,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -46,8 +45,8 @@ public class EventEdit extends SherlockFragmentActivity {
 	private EditText inputEventName;
 	private EditText inputStartDate;
 	private EditText inputEndDate;
-	private EditText inputPostCode1;
-	private EditText inputPostCode2;
+	private EditText inputAddress;
+	private EditText inputPostcode;
 	private EditText inputMaxCap;
 	private EditText inputRegLink;
 	private EditText inputDescription;
@@ -62,30 +61,24 @@ public class EventEdit extends SherlockFragmentActivity {
 	private static final String TAG = EventEdit.class.getSimpleName();
 
 	// url to edit event
-	private static final String url_event_details = "http://seek.wc.lt/seek/get_event_details.php";
+	private static final String url_event_details = "http://seek-app.wc.lt/get_event_details.php";
 
 	// url to update event
-	private static final String url_update_event = "http://seek.wc.lt/seek/update_event.php";
+	private static final String url_update_event = "http://seek-app.wc.lt/update_event.php";
 
 	// url to delete event
-	private static final String url_delete_event = "http://seek.wc.lt/seek/delete_event.php";
+	private static final String url_delete_event = "http://seek-app.wc.lt/delete_event.php";
 
 	// JSON node names
 	private static final String TAG_SUCCESS = "success";
-	private static final String TAG_EVENT = "event";
 	private static final String TAG_EID = "eventId";
-	private static final String TAG_NAME = "name";
-	private static final String TAG_URL = "regLink";
-	private static final String TAG_POSTCODE1 = "postcode1";
-	private static final String TAG_POSTCODE2 = "postcode2";
-	private static final String TAG_MAXCAP = "maxCap";
-	private static final String TAG_DESCRIPTION = "description";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.event_edit);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
 		saveButton = (Button) findViewById(R.id.saveButton);
 
@@ -136,9 +129,7 @@ public class EventEdit extends SherlockFragmentActivity {
 	 * */
 	private void getEventDetails(final String event_id) {
 
-		//rq = Volley.newRequestQueue(this);
-
-		StringRequest postReq2 = new StringRequest(Request.Method.POST, "http://seek.wc.lt/seek/get_event_details.php", new Response.Listener<String>() {
+		StringRequest postReq2 = new StringRequest(Request.Method.POST, url_event_details, new Response.Listener<String>() {
 
 			@Override
 			public void onResponse(String response) {
@@ -152,8 +143,8 @@ public class EventEdit extends SherlockFragmentActivity {
 					String enddate = event.getString("enddate");
 					String regLink = event.getString("regLink");
 					String maxCap = event.getString("maxCap");
-					String postcode1 = event.getString("postcode1");
-					String postcode2 = event.getString("postcode2");
+					String address = event.getString("address");
+					String post_code = event.getString("postcode");
 					String description = event.getString("description");
 
 					// Found event with this eventId
@@ -161,8 +152,8 @@ public class EventEdit extends SherlockFragmentActivity {
 					inputStartDate = (EditText) findViewById(R.id.startDate_input);
 					inputEndDate = (EditText) findViewById(R.id.endDate_input);
 					inputRegLink = (EditText) findViewById(R.id.urlLink_input);
-					inputPostCode1 = (EditText) findViewById(R.id.postCode1);
-					inputPostCode2 = (EditText) findViewById(R.id.postCode2);
+					inputAddress = (EditText) findViewById(R.id.address);
+					inputPostcode = (EditText) findViewById(R.id.postcode);
 					inputMaxCap = (EditText) findViewById(R.id.maxCap_input);
 					inputDescription = (EditText) findViewById(R.id.eventDescription_input);
 
@@ -171,12 +162,10 @@ public class EventEdit extends SherlockFragmentActivity {
 					inputStartDate.setText(startdate);
 					inputEndDate.setText(enddate);
 					inputRegLink.setText(regLink);
-					inputPostCode1.setText(postcode1);
-					inputPostCode2.setText(postcode2);
+					inputAddress.setText(address);
+					inputPostcode.setText(post_code);
 					inputMaxCap.setText(maxCap);
 					inputDescription.setText(description);
-
-
 
 				} catch (JSONException e) {
 					e.printStackTrace();
@@ -190,8 +179,6 @@ public class EventEdit extends SherlockFragmentActivity {
 			public void onErrorResponse(VolleyError error) {
 				VolleyLog.d(TAG, "Error: " + error.getMessage());
 				Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-
-
 			}
 
 		})  {
@@ -205,8 +192,6 @@ public class EventEdit extends SherlockFragmentActivity {
 
 		};
 		Controller.getInstance().addToRequestQueue(postReq2);
-		//rq.add(postReq2);
-
 	}
 	
 	/**
@@ -237,9 +222,8 @@ public class EventEdit extends SherlockFragmentActivity {
 			String startdate = inputStartDate.getText().toString();
 			String enddate = inputEndDate.getText().toString();
 			String regLink = inputRegLink.getText().toString();
-			String postcode1 = inputPostCode1.getText().toString();
-			String postcode2 = inputPostCode2.getText().toString();
-			String postCode = inputPostCode1.getText().toString().toUpperCase(Locale.getDefault()) + inputPostCode2.getText().toString().toUpperCase(Locale.getDefault());
+			String address = inputAddress.getText().toString();
+			String post_code = inputPostcode.getText().toString();
 			String maxCap = inputMaxCap.getText().toString();
 			String description = inputDescription.getText().toString();
 
@@ -250,9 +234,8 @@ public class EventEdit extends SherlockFragmentActivity {
 			params.add(new BasicNameValuePair("start_date", startdate));
 			params.add(new BasicNameValuePair("end_date", enddate));
 			params.add(new BasicNameValuePair("reg_link", regLink));
-			params.add(new BasicNameValuePair("post_code1", postcode1));
-			params.add(new BasicNameValuePair("post_code2", postcode2));
-			params.add(new BasicNameValuePair("post_code", postCode));
+			params.add(new BasicNameValuePair("address", address));
+			params.add(new BasicNameValuePair("post_code", post_code));
 			params.add(new BasicNameValuePair("max_cap", maxCap));
 			params.add(new BasicNameValuePair("e_desc", description));
 

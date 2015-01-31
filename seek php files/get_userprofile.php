@@ -9,7 +9,7 @@ include 'db_connect.php';
 if(isset($_POST['user_id'])) { $user_id = $_POST['user_id']; }
 
 //make a query
-$query = "SELECT user_id, first_name, last_name, phone_nmbr, post_code1, post_code2, post_code, birth_date, under_18, gender, int_tags, use_currloc, see_currloc, see_details FROM users WHERE user_id = ?";
+$query = "SELECT user_id, first_name, last_name, phone_nmbr, address, post_code, birth_date, under_18, gender, int_tags, use_currloc, see_currloc, see_details FROM users WHERE user_id = ?";
 
 if ($stmt = $conn->prepare($query))
 {
@@ -23,8 +23,7 @@ if ($stmt = $conn->prepare($query))
         $first_name,
         $last_name,
         $phone_nmbr,
-        $post_code1,
-        $post_code2,
+        $address,
         $post_code,
         $birth_date,
         $under_18,
@@ -43,9 +42,8 @@ if ($stmt = $conn->prepare($query))
             'firstname' => $first_name,
             'lastname' => $last_name,
             'phone' => $phone_nmbr,
-            'postcode1' => $post_code1,
-            'postcode2' => $post_code2,
-            'postCode' => $post_code,
+            'address' => $address,
+            'postcode' => $post_code,
             'birthdate' => $birth_date,
             'under18' => $under_18,
             'gender' => $gender,

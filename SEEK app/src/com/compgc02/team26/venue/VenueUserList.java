@@ -37,19 +37,14 @@ public class VenueUserList extends Fragment {
 	private static final String TAG = VenueUserList.class.getSimpleName();
 	
 	// Venue json URL
-	private static final String url = "http://seek.wc.lt/seek/get_userlist_venue.php";
+	private static final String url = "http://seek-app.wc.lt/get_userlist_venue.php";
 	private ProgressDialog pd;
 	private List<Venue> venueList = new ArrayList<Venue>();
 	private ListView lv;
 	private VenueCustomListAdapter adapter;	
 
 	// JSON nodes name
-	private static final String TAG_SUCCESS = "success";
-	private static final String TAG_VENUE = "venue";
 	private static final String TAG_VID = "venueId";
-	private static final String TAG_NAME = "name";
-	private static final String TAG_TYPE = "venueType";
-	private static final String TAG_MAXCAP = "maxCap";
 
 	// JSONArray venues
 	JSONArray venue = null;
