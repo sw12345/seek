@@ -78,6 +78,7 @@ public class VenueUserList extends Fragment {
 						venue.setTitle(obj.getString("name"));
 						venue.setType(obj.getString("venueType"));
 						venue.setPostcode(obj.getString("postCode"));
+						venue.setMaxcap(obj.getString("maxCap"));
 						// venue.setDistance(distance); --> query result
 
 						// Adding venue to array

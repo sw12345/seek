@@ -31,7 +31,7 @@ public class HomePage extends SherlockFragmentActivity {
 	}
 
 	public void profileButtonOnClick(View v) {
-		//String userId = ((TextView) findViewById(R.id.userid)).getText().toString();		
+	
 		Intent intent = new Intent(this, UserProfile.class);
 		
 		// get user data from session

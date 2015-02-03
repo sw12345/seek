@@ -14,7 +14,7 @@
     <string name="phone_text">Phone Number:</string>
     <string name="dob_text">Date of Birth:</string>
     <string name="use_current_location">Use my current location</string>
-    <string name="others_current_location">Others can see my current details</string>
+    <string name="others_current_location">Others can see my location</string>
     <string name="others_contact_details">Others can see my contact details</string>
     <string name="under18_text">Under 18 years old?</string>
     <string name="gender">Gender:</string>
@@ -62,9 +62,6 @@
     <string name="create_text">Create</string>
     <string name="title_activity_event_results">Event Search Results</string>
     <string name="title_activity_event_details">Event Details</string>
-    <string name="dummy_text">Dummy event search results</string>
-    <string name="dummy_venue_text">Dummy venue search results</string>
-    <string name="dummy_contact_text">Dummy contact search results</string>
     <string name="title_activity_event_create">Create Event</string>
     <string name="title_activity_event_edit">Edit Event</string>
     <string name="event_title">Event Name:</string>
@@ -94,9 +91,9 @@
     <string name="title_activity_venue_edit">Edit Venue</string>
     <string name="search_icon">search icon</string>
     <string name="title_activity_venue_details">Venue Details</string>
-    <string name="title_activity_contact_search">Contact Search</string>
-    <string name="title_activity_contact_results">Contact Search Results</string>
-    <string name="title_activity_contact_details">Contact Details</string>
+    <string name="title_activity_contact_search">User Search</string>
+    <string name="title_activity_contact_results">User Search Results</string>
+    <string name="title_activity_contact_details">User Details</string>
     <string name="name_label">Name</string>
     <string name="age_label">Age</string>
     <string name="title_activity_home_page">Home</string>

@@ -41,9 +41,9 @@ public class EventResultsPostcode extends SherlockFragmentActivity {
 
 	// Log tag
 	private static final String TAG = EventResultsPostcode.class.getSimpleName();
-	
-	
-		private static final String INTENT_KEY = "intentkey"; 
+
+
+	private static final String INTENT_KEY = "intentkey"; 
 
 	// Event json URL
 	private static final String url_postcode = "http://seek-app.wc.lt/search_event_postcode.php";
@@ -58,7 +58,7 @@ public class EventResultsPostcode extends SherlockFragmentActivity {
 		setContentView(R.layout.event_userlist);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
-		
+
 		lv = (ListView) findViewById(R.id.list);
 		adapter = new EventCustomListAdapter(this, eventList);
 		lv.setAdapter(adapter);

@@ -46,6 +46,7 @@ public class VenueCustomListAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.venue_rowlist, parent, false);
 
 		TextView venueId = (TextView) convertView.findViewById(R.id.venueId);
+		venueId.setVisibility(View.GONE); //hidden from interface. Use only for passing data to get details of venue
 		TextView title = (TextView) convertView.findViewById(R.id.name);
 		TextView type = (TextView) convertView.findViewById(R.id.type);
 		TextView maxcap = (TextView) convertView.findViewById(R.id.maxcap);

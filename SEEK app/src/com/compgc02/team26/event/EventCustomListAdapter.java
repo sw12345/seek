@@ -46,6 +46,7 @@ public class EventCustomListAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.event_rowlist, parent, false);
 
 		TextView eventId = (TextView) convertView.findViewById(R.id.eventId);
+		eventId.setVisibility(View.GONE); //hidden from interface. Use only for passing data to get details of event
 		TextView title = (TextView) convertView.findViewById(R.id.name);
 		TextView postcode = (TextView) convertView.findViewById(R.id.postcode);
 		TextView distance = (TextView) convertView.findViewById(R.id.distance);

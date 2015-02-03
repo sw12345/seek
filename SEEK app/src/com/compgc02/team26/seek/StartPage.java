@@ -199,7 +199,7 @@ public class StartPage extends SherlockFragmentActivity implements OnClickListen
 
 				} catch (JSONException e) {
 					e.printStackTrace();
-					Toast.makeText(getApplicationContext(), "Error222222: " + e.getMessage(), Toast.LENGTH_LONG).show();				
+					Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();				
 				}
 
 			}

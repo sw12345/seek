@@ -46,6 +46,7 @@ public class ContactCustomListAdapter extends BaseAdapter {
 			convertView = inflater.inflate(R.layout.contact_rowlist, parent, false);
 
 		TextView userId = (TextView) convertView.findViewById(R.id.userId);
+		userId.setVisibility(View.GONE); //hidden from interface. Use only for passing data to get details of contact
 		TextView name = (TextView) convertView.findViewById(R.id.name);
 		TextView age = (TextView) convertView.findViewById(R.id.age);
 		TextView interests = (TextView) convertView.findViewById(R.id.interests);

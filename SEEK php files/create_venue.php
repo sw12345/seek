@@ -26,7 +26,7 @@ if($_POST) {
 	/* For testing purpose, the user_id is set to 1 because it's the foreign key that connects the tables. */
 	$query = "INSERT INTO venue 
 	(user_id, v_name, v_type, address, post_code, max_cap, v_desc, latitude, longitude)
-	VALUES(6, ?, ?, ?, ?, ?, ?, ?, ?)";
+	VALUES(113, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
 	//if the statement was prepared
 	if($statement = $conn->prepare($query)){

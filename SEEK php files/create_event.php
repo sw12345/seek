@@ -26,7 +26,7 @@ if($_POST) {
 	/* For testing purpose, the user_id is set to 1 because it's the foreign key that connects the tables. */
 	$query = "INSERT INTO event 
 	(user_id, e_name, start_date, end_date, address, post_code, max_cap, reg_link, e_desc, latitude, longitude)
-	VALUES(6, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	VALUES(113, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
 	//if the statement was prepared
 	if($statement = $conn->prepare($query)){
