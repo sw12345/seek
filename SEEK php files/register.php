@@ -50,7 +50,7 @@ if (!empty($_POST)) {
 	// Check that user tick the terms & conditions checkbox
 	if ($_POST['terms_cond'] == "false") {
 		$response["success"] = 0;
-		$response["message"] = "You must agree to the term & policy";
+		$response["message"] = "You must read & agree to the term & policy";
 		die(json_encode($response));
 	}
 

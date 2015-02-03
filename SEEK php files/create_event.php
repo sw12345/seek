@@ -6,9 +6,12 @@ error_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPOR
 //if new user input
 if($_POST) {
 	$address = $_POST['address'];
+	$postcode = $_POST['post_code'];
+
 	// connect to google geocode api
 	$trimaddress = str_replace(" ","+", trim($address));
-	$url = "https://maps.googleapis.com/maps/api/geocode/json?address=$trimaddress+UK&key=AIzaSyCaweuQFb5W4JYsPurl5y71DYqLiD6XjaU";
+	$trimpostcode = str_replace(" ","+", trim($postcode));
+	$url = "https://maps.googleapis.com/maps/api/geocode/json?address=$trimaddress+$trimpostcode+UK&key=AIzaSyCaweuQFb5W4JYsPurl5y71DYqLiD6XjaU";
 	$json = file_get_contents($url);
 	$geocode = json_decode($json, true);
 

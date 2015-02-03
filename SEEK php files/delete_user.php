@@ -18,7 +18,7 @@ if(isset($_POST['user_id'])) {
      * constraint that would allow cascading upon deletion or update (delete event or venue created by the user
      * deleted).
      */
-    
+
     //make a query
     $query = "DELETE FROM users WHERE user_id = ?";
 

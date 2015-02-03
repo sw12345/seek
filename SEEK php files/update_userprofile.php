@@ -8,8 +8,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 //establish connection with db
 include 'db_connect.php';
 
-if (isset($_POST['user_id']))
-{
+if($_POST) {
     $user_id = $_POST['user_id'];
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
@@ -21,8 +20,18 @@ if (isset($_POST['user_id']))
     $gender = $_POST['gender'];
     $int_tags = $_POST['int_tags'];
     $use_currloc = $_POST['use_currloc'];
-    $see_currloc = $_POST['see_currloc'];
     $see_details = $_POST['see_details'];
+
+    // connect to google geocode api
+    $trimaddress = str_replace(" ","+", trim($address));
+    $trimpostcode = str_replace(" ","+", trim($post_code));
+    $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$trimaddress+$trimpostcode+UK&key=AIzaSyCaweuQFb5W4JYsPurl5y71DYqLiD6XjaU";
+    $json = file_get_contents($url);
+    $geocode = json_decode($json, true);
+
+    // get latitude & longitude of the post code / address
+    $latitude = $geocode['results'][0]['geometry']['location']['lat'];
+    $longitude = $geocode['results'][0]['geometry']['location']['lng'];
 
     //make a query
     $query = "UPDATE users
@@ -37,15 +46,16 @@ if (isset($_POST['user_id']))
 	gender = ?,
     int_tags = ?,
     use_currloc = ?,
-    see_currloc = ?,
-    see_details = ?
+    see_details = ?,
+    latitude = ?,
+    longitude = ?
 	WHERE user_id = ?";
 
     //prepare statement
     if ($stmt = $conn->prepare($query))
     {
         $stmt->bind_param(
-            "ssssssssssssi",
+            "sssssssssssssi",
             $_POST['first_name'],
             $_POST['last_name'],
             $_POST['phone_nmbr'],
@@ -56,9 +66,11 @@ if (isset($_POST['user_id']))
             $_POST['gender'],
             $_POST['int_tags'],
             $_POST['use_currloc'],
-            $_POST['see_currloc'],
             $_POST['see_details'],
-            $_POST['user_id']);
+            $latitude,
+            $longitude,
+            $_POST['user_id']
+        );
 
         $stmt->execute();
 
