@@ -15,7 +15,7 @@
     <string name="dob_text">Date of Birth:</string>
     <string name="use_current_location">Use my current location</string>
     <string name="others_current_location">Others can see my location</string>
-    <string name="others_contact_details">Others can see my contact details</string>
+    <string name="others_contact_details">Share my location &amp; details</string>
     <string name="under18_text">Under 18 years old?</string>
     <string name="gender">Gender:</string>
     <string name="male_checkbox">Male</string>
@@ -51,6 +51,7 @@
     <string name="venue_button">Venue</string>
     <string name="media_button">Media</string>
     <string name="message_button">Message</string>
+    <string name="message_text">Message:</string>
     <string name="admin_button">Admin</string>
     <string name="title_activity_event_page">Event</string>
     <string name="events_radius_from_me_1">Events within</string>
@@ -117,7 +118,7 @@
     <string name="deregister">Deregister</string>
     <string name="send_msg">Send message to UnLtd</string>
     <string name="email">Email address:</string>
-    <string name="write">Write something here...</string>
+    <string name="write">Write something here&#8230;&#8230;&#8230;</string>
     <string name="address_text">e.g 87,Godolphin Road,London</string>
     <string name="contact_activity">Contact</string>
     <string name="event_activity">Event</string>

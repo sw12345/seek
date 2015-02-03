@@ -1,0 +1,90 @@
+package com.compgc02.team26.event;
+
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NavUtils;
+import android.support.v4.view.ViewPager;
+
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
+import com.compgc02.samsudin.seek.R;
+import com.viewpagerindicator.PageIndicator;
+import com.viewpagerindicator.TabPageIndicator;
+
+public class EventActivity extends SherlockFragmentActivity {
+
+	//SessionManager session;
+
+	//title of the tab
+	private static final String[] TITLE = new String[] { "Search", "Create", "Edit" };
+
+	FragmentAdapter mAdapter; //show fragment on the page of the selected tab
+	ViewPager mPager; //allow user to flip left & right of the page
+	PageIndicator mIndicator; //shows what page the user currently on
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_tabbed);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
+
+		// Session class instance
+		//session = new SessionManager(getApplicationContext());
+
+		// Check whether user is logged in or not
+		//session.checkLogin();
+
+		mAdapter = new FragmentAdapter(getSupportFragmentManager());
+
+		mPager = (ViewPager)findViewById(R.id.pager);
+		mPager.setAdapter(mAdapter);
+
+		mIndicator = (TabPageIndicator)findViewById(R.id.indicator);
+		mIndicator.setViewPager(mPager);
+	}
+
+	class FragmentAdapter extends FragmentPagerAdapter {	    
+		private int mCount = TITLE.length;
+
+		public FragmentAdapter(FragmentManager fm) {
+			super(fm);
+		}
+
+		@Override
+		public Fragment getItem(int i) {
+			switch (i) {
+			case 0: return new EventSearch();
+			case 1: return new EventCreate();
+			case 2: return new EventUserList();
+			default: return null;
+			} 
+		}
+
+		@Override
+		public int getCount() {
+			return mCount;
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return TITLE[position];
+		}
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		// Respond to the action bar's Up/Home button
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}        
+
+}

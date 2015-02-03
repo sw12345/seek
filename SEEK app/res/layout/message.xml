@@ -26,7 +26,7 @@
             android:id="@+id/subjecttext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
+            android:layout_marginTop="20dp"
             android:text="@string/subject" />
 
         <EditText
@@ -40,6 +40,13 @@
             <requestFocus />
         </EditText>
 
+        <TextView
+            android:id="@+id/messagetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/message_text" />
+        
         <EditText
             android:id="@+id/msg_content"
             android:layout_width="match_parent"
@@ -48,7 +55,6 @@
             android:gravity="top|left"
             android:hint="@string/write"
             android:inputType="textMultiLine"
-            android:paddingTop="30dp"
             android:scrollHorizontally="false" />
 
         <Button
@@ -56,8 +62,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:layout_marginTop="20dp"
             android:onClick="sendMsg"
             android:text="@string/submit" />
+
     </LinearLayout>
 
 </ScrollView>

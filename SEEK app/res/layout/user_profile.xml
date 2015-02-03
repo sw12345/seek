@@ -70,7 +70,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/address_text"
-            android:inputType="phone" />
+            android:inputType="text"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -165,12 +165,6 @@
             android:text="@string/use_current_location" />
 
         <CheckBox
-            android:id="@+id/othersSeeCrntLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/others_current_location" />
-
-        <CheckBox
             android:id="@+id/othersSeeCntctDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -183,7 +177,6 @@
             android:layout_gravity="end"
             android:layout_marginTop="20dp"
             android:text="@string/save_button" />
-
     </LinearLayout>
 
 </ScrollView>
