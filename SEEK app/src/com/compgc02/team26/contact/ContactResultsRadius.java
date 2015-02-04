@@ -38,6 +38,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.compgc02.samsudin.seek.R;
 import com.compgc02.team26.seek.Controller;
 import com.compgc02.team26.seek.GPStracker;
+import com.compgc02.team26.seek.SessionManager;
 
 
 public class ContactResultsRadius extends SherlockFragmentActivity implements LocationListener {
@@ -59,6 +60,11 @@ public class ContactResultsRadius extends SherlockFragmentActivity implements Lo
 	private List<Contact> contactList = new ArrayList<Contact>();
 	private ListView lv;
 	private ContactCustomListAdapter adapter;
+
+	String userId;
+	String under18;
+
+	SessionManager session;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,11 +89,19 @@ public class ContactResultsRadius extends SherlockFragmentActivity implements Lo
 		pd.setMessage("Loading..."); // Show this while the list is loading
 		pd.show();
 
+		session = new SessionManager(getApplicationContext());
+		// Check whether user is logged in or not
+		session.checkLogin();
+
+		// Get user data from session
+		HashMap<String, String> user = session.getUserDetails();
+		userId = user.get(SessionManager.KEY_ID);
+
 		// Search events within xx radius from user's current location
 		Intent intent = getIntent();
 
 		String radius = intent.getStringExtra(INTENT_KEY);
-		radiusEvent(radius, latitude, longitude);
+		radiusEvent(radius, latitude, longitude, userId);
 
 		// On selecting single contact, launch edit contact activity
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -109,7 +123,7 @@ public class ContactResultsRadius extends SherlockFragmentActivity implements Lo
 	}
 
 	// Search events within xx radius from user's current location
-	private void radiusEvent(final String radius, final String latitude, final String longitude) {
+	private void radiusEvent(final String radius, final String latitude, final String longitude, final String userId) {
 
 		StringRequest postReq = new StringRequest(Request.Method.POST, url_radius, new Response.Listener<String>() {
 
@@ -127,7 +141,7 @@ public class ContactResultsRadius extends SherlockFragmentActivity implements Lo
 						Contact contact = new Contact();
 						contact.setId(obj.getString("userId"));
 						contact.setName(obj.getString("firstname")+" "+obj.getString("lastname"));
-						contact.setDistance(obj.getInt("distance"));
+						contact.setAge(obj.getString("age"));
 						contact.setInterests(obj.getString("interesttags"));
 						contact.setDistance(obj.getInt("distance"));
 
@@ -156,6 +170,7 @@ public class ContactResultsRadius extends SherlockFragmentActivity implements Lo
 				params.put("radius", radius);
 				params.put("latitude", latitude);
 				params.put("longitude", longitude);
+				params.put("user_id", userId);
 				return params;
 			}
 

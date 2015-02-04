@@ -55,6 +55,8 @@ public class StartPage extends SherlockFragmentActivity implements OnClickListen
 	String user_pass;
 	String userId;
 	String email;
+	String currloc;
+	String under18;
 
 	// url to log user in
 	private static String url_login = "http://seek-app.wc.lt/login.php";
@@ -193,9 +195,11 @@ public class StartPage extends SherlockFragmentActivity implements OnClickListen
 					JSONObject person = new JSONObject(response);
 					userId = person.getString("userId");
 					email = person.getString("email");
+					currloc = person.getString("currentloc");
+					under18 = person.getString("under18");
 
 					// Store session
-					session.createLoginSession(userId, email);
+					session.createLoginSession(userId, email, currloc, under18);
 
 				} catch (JSONException e) {
 					e.printStackTrace();

@@ -53,6 +53,8 @@ public class ContactResultsPostcode extends SherlockFragmentActivity {
 	private ContactCustomListAdapter adapter;
 
 	SessionManager session;
+	String user_id;
+	String under18;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,7 +62,7 @@ public class ContactResultsPostcode extends SherlockFragmentActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
 
-		/*// Session class instance
+		// Session class instance
 		session = new SessionManager(getApplicationContext());
 
 		// Check whether user is logged in or not
@@ -68,12 +70,12 @@ public class ContactResultsPostcode extends SherlockFragmentActivity {
 
 		// Get user data from session
 		HashMap<String, String> user = session.getUserDetails();
-		String email = user.get(SessionManager.KEY_EMAIL);*/
+		user_id = user.get(SessionManager.KEY_ID);
 
 		// Search contacts within 10 km radius from postcode/places given by user (only display user above 18 years old)
 		Intent intent = getIntent();
 		String post_code = intent.getStringExtra(INTENT_KEY);
-		postcodeSearch(post_code);
+		postcodeSearch(post_code, user_id);
 
 		lv = (ListView) findViewById(R.id.list);
 		adapter = new ContactCustomListAdapter(this, contactList);
@@ -103,7 +105,7 @@ public class ContactResultsPostcode extends SherlockFragmentActivity {
 	}
 
 	// Search contacts within 10 km radius from postcode/places given by user (only displayer user above 18 years old)
-	private void postcodeSearch(final String post_code) {
+	private void postcodeSearch(final String post_code, final String userId) {
 
 		StringRequest postReq2 = new StringRequest(Request.Method.POST, url_postcode, new Response.Listener<String>() {
 
@@ -149,6 +151,7 @@ public class ContactResultsPostcode extends SherlockFragmentActivity {
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String, String> params = new HashMap<String, String>();
 				params.put("post_code", post_code);
+				params.put("user_id", user_id);
 				return params;
 			}
 
