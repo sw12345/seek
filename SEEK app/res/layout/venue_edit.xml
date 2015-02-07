@@ -40,7 +40,7 @@
             android:entries="@array/venue_type"
             android:paddingBottom="5dp" />
 
-       <TextView
+        <TextView
             android:id="@+id/addresstext"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -88,17 +88,18 @@
 
         <EditText
             android:id="@+id/venueDescription_input"
-            android:layout_width="fill_parent"
-            android:layout_height="150dp"
-            android:background="@drawable/round"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
             android:gravity="top|left"
+            android:hint="@string/write"
             android:inputType="textMultiLine"
-            android:padding="8dp"
-            android:paddingBottom="15dp" />
+            android:scrollHorizontally="false" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal" >
 
             <Button
@@ -114,7 +115,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/delete_text" />
-
         </LinearLayout>
     </LinearLayout>
 

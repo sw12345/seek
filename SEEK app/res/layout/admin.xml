@@ -1,23 +1,28 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
-    tools:context="com.compgc02.team26.seek.Admin" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.compgc02.samsudin.seek" >
 
-    <Button
-        android:id="@+id/terms_condition"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:onClick="onClick1"
-        android:text="@string/terms_condition" />
+        android:orientation="vertical"
+        android:padding="20dp" >
 
-    <Button
-        android:id="@+id/deregister"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClick2"
-        android:text="@string/deregister" />
+        <Button
+            android:id="@+id/terms_condition"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick1"
+            android:text="@string/terms_condition" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/deregister"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick2"
+            android:text="@string/deregister" />
+    </LinearLayout>
+
+</ScrollView>

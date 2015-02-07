@@ -15,6 +15,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -66,9 +67,11 @@ public class RegisterPage extends SherlockFragmentActivity implements OnClickLis
 		inputPasswordCfrm = (EditText) findViewById(R.id.passwordConfirm);
 		checkBox = (CheckBox) findViewById(R.id.checkBox1);
 
-		// Open link
-		TextView terms = (TextView) findViewById(R.id.terms);
-		terms.setMovementMethod(LinkMovementMethod.getInstance());
+		// Open link to the UnLtd privacy & policy of the app
+		String checkBoxText = "I agree to all the <a href='https://unltd.org.uk/about_unltd/frequently-asked-questions-and-answers/' > Terms and Conditions</a>";
+
+		checkBox.setText(Html.fromHtml(checkBoxText));
+		checkBox.setMovementMethod(LinkMovementMethod.getInstance());
 
 		// Register button
 		final Button registerButton = (Button) findViewById(R.id.registerButton);

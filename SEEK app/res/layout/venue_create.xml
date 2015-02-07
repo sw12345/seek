@@ -83,19 +83,21 @@
 
         <EditText
             android:id="@+id/eventDescription_input"
-            android:layout_width="fill_parent"
-            android:layout_height="150dp"
-            android:background="@drawable/round"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
             android:gravity="top|left"
+            android:hint="@string/write"
             android:inputType="textMultiLine"
-            android:padding="8dp"
             android:scrollHorizontally="false" />
 
         <Button
             android:id="@+id/createButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="@string/create_text" />
+
     </LinearLayout>
 
 </ScrollView>

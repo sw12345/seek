@@ -9,9 +9,12 @@ import org.json.JSONObject;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +36,19 @@ public class VenueDetails extends SherlockFragmentActivity {
 	private TextView txtAddress;
 	private TextView txtMaxcap;
 	private TextView txtDescription;
+	private TextView txtEmail;
+	private TextView txtPhone;
+	private ImageView callOwner;
+	private ImageView textOwner;
+	private ImageView emailOwner;
 	
+	String name;
+	String type;
+	String address;
+	String maxCap;
+	String description;
+	String email;
+	String phone;	
 	String venueId;
 
 	private static final String TAG_VID = "venueId";
@@ -54,6 +69,40 @@ public class VenueDetails extends SherlockFragmentActivity {
 
 		// Getting complete venue details in background thread
 		getVenueDetails(venueId);
+		
+		// call owner of venue
+		callOwner = (ImageView) findViewById(R.id.callOwner);
+		callOwner.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent callIntent = new Intent(Intent.ACTION_CALL);          
+	            callIntent.setData(Uri.parse("tel:"+ phone));          
+	            startActivity(callIntent);
+			}
+		});
+
+		// text owner of venue
+		textOwner = (ImageView) findViewById(R.id.textOwner);
+		textOwner.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent smsIntent = new Intent(Intent.ACTION_VIEW);          
+				smsIntent.setData(Uri.parse("sms:"+ phone));          
+	            startActivity(smsIntent);
+			}
+		});
+		
+		// email owner of venue
+		emailOwner = (ImageView) findViewById(R.id.emailOwner);
+		emailOwner.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent emailIntent = new Intent(Intent.ACTION_SEND);          
+				emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {email});
+	            startActivity(Intent.createChooser(emailIntent, "Send email to owner"));
+			}
+		});
+		
 	}
 
 	/**
@@ -72,11 +121,13 @@ public class VenueDetails extends SherlockFragmentActivity {
 				try {
 
 					JSONObject venue = new JSONObject(response);
-					String name = venue.getString("name");
-					String type = venue.getString("type");
-					String address = venue.getString("address");
-					String maxCap = venue.getString("maxCap");
-					String description = venue.getString("description");
+					name = venue.getString("name");
+					type = venue.getString("type");
+					address = venue.getString("address");
+					maxCap = venue.getString("maxCap");
+					description = venue.getString("description");
+					email = venue.getString("email");
+					phone = venue.getString("phone");
 
 					// Found venue with this venueId
 					txtName = (TextView) findViewById(R.id.txtName);
@@ -85,6 +136,8 @@ public class VenueDetails extends SherlockFragmentActivity {
 					txtMaxcap = (TextView) findViewById(R.id.txtMaxcap);
 					txtAddress = (TextView) findViewById(R.id.txtAddress);
 					txtDescription = (TextView) findViewById(R.id.txtDescription);
+					txtEmail = (TextView) findViewById(R.id.txtEmail);
+					txtPhone = (TextView) findViewById(R.id.txtPhone);
 
 					// Set edit text
 					txtName.setText(name);
@@ -92,6 +145,8 @@ public class VenueDetails extends SherlockFragmentActivity {
 					txtAddress.setText(address);
 					txtMaxcap.setText(maxCap);
 					txtDescription.setText(description);
+					txtEmail.setText(email);
+					txtPhone.setText(phone);
 
 				} catch (JSONException e) {
 					e.printStackTrace();

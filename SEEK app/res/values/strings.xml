@@ -17,6 +17,7 @@
     <string name="others_current_location">Others can see my location</string>
     <string name="others_contact_details">Share my location &amp; details</string>
     <string name="under18_text">Under 18 years old?</string>
+    <string name="age_text">Age:</string>
     <string name="gender">Gender:</string>
     <string name="male_checkbox">Male</string>
     <string name="female_checkbox">Female</string>
@@ -36,15 +37,13 @@
     <string name="title_activity_start_page">Start Page</string>
     <string name="password_hint">Password</string>
     <string name="forget_password">Forget password?</string>
-    <string name="login_button">Login</string>
+    <string name="login_button">LOG IN</string>
     <string name="new_user_link">New user?</string>
     <string name="unltd_link">UnLtd.org.uk</string>
     <string name="seek_text">SEEK</string>
     <string name="sign_up">Sign Up</string>
     <string name="confirm_email_address">Confirm email address</string>
     <string name="confirm_password">Confirm password</string>
-    <string name="sign_up_checkbox">By signing up, you agree to the</string>
-    <string name="privacy_policy"><a href="https://unltd.org.uk/about_unltd/frequently-asked-questions-and-answers/">Privacy Policy and Terms of Service</a></string>
     <string name="register_button">Register</string>
     <string name="contact_button">Contact</string>
     <string name="event_button">Event</string>
@@ -137,6 +136,7 @@
     <string name="search_postcode2">e.g. N79BA or London or Leyton</string>
     <string name="search_by_email">Search by email address:</string>
     <string name="subject">Subject:</string>
+    <string name="contact_owner">Contact Owner:</string>
 
     <string-array name="radius_arrays">
         <item>less than 1 km</item>
