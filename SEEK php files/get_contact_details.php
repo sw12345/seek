@@ -1,47 +1,1 @@
-<?php
-
-//report any error
-error_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
-//connect to database
-include 'db_connect.php';
-
-if(isset($_POST['user_id'])) { $user_id = $_POST['user_id']; }
-
-//make a query
-$query = "SELECT first_name, last_name, email_address, gender, int_tags FROM users WHERE user_id = ?";
-
-if ($stmt = $conn->prepare($query)) {
-    $stmt-> bind_param('i', $user_id);
-
-    //send query to db
-    $stmt-> execute();
-    $stmt->store_result();
-    $stmt->bind_result($first_name, $last_name, $email_address, $gender, $int_tags);
-
-    //fetch values by looping through each row
-    while ($stmt->fetch()) {
-        $jsonResponse = array(
-            'userId' => $user_id,
-            'firstname' => $first_name,
-            'lastname' => $last_name,
-            'email' => $email_address,
-            'gender' => $gender,
-            'interests' => $int_tags
-        );
-        json_encode($jsonResponse);
-    };
-
-    // success
-    //$response["success"] = 1;
-    echo json_encode($jsonResponse);
-
-    //close statement
-    $stmt->close();
-
-}
-
-//close connection
-$conn->close();
-
-?>
+<?php//report any errorerror_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);//connect to databaseinclude 'db_connect.php';if(isset($_POST['user_id'])) { $user_id = $_POST['user_id']; }//make a query$query = "SELECT FirstSet.user_id, FirstSet.first_name, FirstSet.last_name, FirstSet.email_address, FirstSet.gender, FirstSet.int_tags, FirstSet.phone_nmbr, SecondSet.ageFROM (SELECT user_id, first_name, last_name, email_address, gender, int_tags, phone_nmbr FROM users) as FirstSetINNER JOIN (SELECT user_id, first_name, last_name, email_address, gender, int_tags, phone_nmbr, TIMESTAMPDIFF( YEAR, birth_date, CURDATE()) AS age FROM users) AS SecondSetON FirstSet.user_id = SecondSet.user_idWHERE FirstSet.user_id = ?";if ($stmt = $conn->prepare($query)) {    $stmt-> bind_param('i', $user_id);    //send query to db    $stmt-> execute();    $stmt->store_result();    $stmt->bind_result($user_id, $first_name, $last_name, $email_address, $gender, $int_tags, $phone_nmbr, $age);    //fetch values by looping through each row    while ($stmt->fetch()) {        $jsonResponse = array(            'userId' => $user_id,            'firstname' => $first_name,            'lastname' => $last_name,            'email' => $email_address,            'gender' => $gender,            'interests' => $int_tags,            'phone' => $phone_nmbr,            'age' => $age        );        json_encode($jsonResponse);    };    echo json_encode($jsonResponse);    //close statement    $stmt->close();}//close connection$conn->close();?>

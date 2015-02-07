@@ -9,7 +9,11 @@ include 'db_connect.php';
 if(isset($_POST['venue_id'])) { $venue_id = $_POST['venue_id']; }
 
 //make a query
-$query = "SELECT venue_id, v_name, v_type, address, post_code, max_cap, v_desc FROM venue WHERE venue_id = ?";
+//$query = "SELECT venue_id, v_name, v_type, address, post_code, max_cap, v_desc FROM venue WHERE venue_id = ?";
+$query = "SELECT SecondSet.venue_id, SecondSet.v_name, SecondSet.v_type, SecondSet.address, SecondSet.post_code, SecondSet.max_cap, SecondSet.v_desc, FirstSet.email_address, FirstSet.phone_nmbr
+			FROM (SELECT user_id, email_address, phone_nmbr FROM users) as FirstSet INNER JOIN
+			(SELECT user_id, venue_id, v_name, v_type, address, max_cap, v_desc, post_code FROM venue) as SecondSet on FirstSet.user_id = SecondSet.user_id
+			WHERE venue_id = ?";
 
 if ($stmt = $conn->prepare($query)) {
 	$stmt-> bind_param('i', $venue_id);
@@ -17,7 +21,7 @@ if ($stmt = $conn->prepare($query)) {
 	//send query to db
 	$stmt-> execute();
 	$stmt->store_result();
-	$stmt->bind_result($venue_id, $v_name, $v_type, $address, $post_code, $max_cap, $v_desc);
+	$stmt->bind_result($venue_id, $v_name, $v_type, $address, $post_code, $max_cap, $v_desc, $email_address, $phone_nmbr);
 
 	//fetch values by looping through each row
 	while ($stmt->fetch()) {
@@ -26,9 +30,11 @@ if ($stmt = $conn->prepare($query)) {
 			'name' => $v_name,
 			'type' => $v_type,
 			'address' => $address,
-			'maxCap' => $max_cap,
 			'postcode' => $post_code,
-			'description' => $v_desc
+			'maxCap' => $max_cap,
+			'description' => $v_desc,
+			'email' => $email_address,
+			'phone' => $phone_nmbr
 		);
 		json_encode($jsonResponse);
 	};
