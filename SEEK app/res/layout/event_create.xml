@@ -1,0 +1,149 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context="com.compgc02.team26.event.EventCreate" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/eventTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/event_title" />
+
+        <EditText
+            android:id="@+id/eventTitle_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+        <requestFocus />
+
+        <TextView
+            android:id="@+id/startDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_date" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/startDate_input"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:onClick="datepickerStart" >
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/endDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end_date" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <EditText
+                android:id="@+id/endDate_input"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:onClick="datepickerEnd" >
+            </EditText>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/addresstext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/address" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/address_text"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/postcodetext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/post_code_text" />
+
+        <EditText
+            android:id="@+id/postcode"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="textPostalAddress" />
+
+        <TextView
+            android:id="@+id/maxCap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/max_cap" />
+
+        <EditText
+            android:id="@+id/maxCap_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/urlLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register_link" />
+
+        <EditText
+            android:id="@+id/urlLink_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textUri" />
+
+        <TextView
+            android:id="@+id/eventDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|fill_vertical"
+            android:text="@string/event_description" />
+
+        <EditText
+            android:id="@+id/eventDescription_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="top|left"
+            android:hint="@string/write"
+            android:inputType="textMultiLine"
+            android:scrollHorizontally="false" />
+
+        <Button
+            android:id="@+id/createButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:onClick="createClick"
+            android:text="@string/create_text" />
+
+    </LinearLayout>
+
+</ScrollView>

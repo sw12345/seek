@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.compgc02.samsudin.seek"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="21" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:name="com.compgc02.team26.seek.Controller"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.VPI" >
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyC02Df-Q2QHGt6HzcCxwIaubnb8az9LEVI" />
+        <activity
+            android:name="com.compgc02.team26.seek.StartPage"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.seek.HomePage"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.seek.RegisterPage"
+            android:label="@string/title_activity_register_page"
+            android:parentActivityName="com.compgc02.team26.seek.StartPage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.seek.StartPage" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.seek.UserProfile"
+            android:label="@string/title_activity_user_profile"
+            android:parentActivityName="com.compgc02.team26.seek.HomePage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.seek.HomePage" />
+        </activity>
+         <activity
+            android:name="com.compgc02.team26.seek.MapView"
+            android:label="@string/title_activity_map_view"
+            android:parentActivityName="com.compgc02.team26.seek.HomePage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.seek.HomePage" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.event.EventActivity"
+            android:label="@string/event_activity"
+            android:parentActivityName="com.compgc02.team26.seek.HomePage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.seek.HomePage" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.venue.VenueActivity"
+            android:label="@string/venue_activity"
+            android:parentActivityName="com.compgc02.team26.seek.HomePage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.seek.HomePage" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.seek.FragmentAdapter"
+            android:label="@string/title_activity_fragment_adapter" >
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.event.EventSearch"
+            android:label="@string/title_activity_event_search" >
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.event.EventCreate"
+            android:label="@string/title_activity_event_create" >
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.event.EventUserList"
+            android:label="@string/title_activity_event_create" >
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.event.EventResultsRadius"
+            android:label="@string/title_activity_event_results"
+            android:parentActivityName="com.compgc02.team26.event.EventActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.event.EventActivity" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.event.EventResultsPostcode"
+            android:label="@string/title_activity_event_results"
+            android:parentActivityName="com.compgc02.team26.event.EventActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.event.EventActivity" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.event.EventDetails"
+            android:label="@string/title_activity_event_details"
+            android:parentActivityName="com.compgc02.team26.event.EventActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.event.EventActivity" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.event.EventEdit"
+            android:label="@string/title_activity_event_edit"
+            android:parentActivityName="com.compgc02.team26.event.EventActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.event.EventActivity" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.venue.VenueSearch"
+            android:label="@string/title_activity_venue_search" >
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.venue.VenueResultsPostcode"
+            android:label="@string/title_activity_venue_results"
+            android:parentActivityName="com.compgc02.team26.venue.VenueActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.venue.VenueActivity" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.venue.VenueResultsRadius"
+            android:label="@string/title_activity_venue_results"
+            android:parentActivityName="com.compgc02.team26.venue.VenueActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.venue.VenueActivity" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.venue.VenueDetails"
+            android:label="@string/title_activity_venue_details"
+            android:parentActivityName="com.compgc02.team26.venue.VenueActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.venue.VenueActivity" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.venue.VenueCreate"
+            android:label="@string/title_activity_venue_create" >
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.venue.VenueUserList"
+            android:label="@string/title_activity_venue_user_list" >
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.venue.VenueEdit"
+            android:label="@string/title_activity_venue_edit"
+            android:parentActivityName="com.compgc02.team26.venue.VenueActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.venue.VenueActivity" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.contact.ContactSearch"
+            android:label="@string/title_activity_contact_search"
+            android:parentActivityName="com.compgc02.team26.seek.HomePage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.seek.HomePage" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.contact.ContactResultsPostcode"
+            android:label="@string/title_activity_contact_results"
+            android:parentActivityName="com.compgc02.team26.contact.ContactSearch" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.contact.ContactSearch" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.contact.ContactResultsRadius"
+            android:label="@string/title_activity_contact_results"
+            android:parentActivityName="com.compgc02.team26.contact.ContactSearch" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.contact.ContactSearch" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.seek.ContactResults"
+            android:label="@string/title_activity_contact_results"
+            android:parentActivityName="com.compgc02.team26.contact.ContactSearch" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.contact.ContactSearch" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.contact.ContactDetails"
+            android:label="@string/title_activity_contact_details"
+            android:parentActivityName="com.compgc02.team26.contact.ContactSearchrch" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.contact.ContactSearch" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.seek.Media"
+            android:label="@string/title_activity_media"
+            android:parentActivityName="com.compgc02.team26.seek.HomePage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.seek.HomePage" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.seek.Message"
+            android:label="@string/title_activity_message"
+            android:parentActivityName="com.compgc02.team26.seek.HomePage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.seek.HomePage" />
+        </activity>
+        <activity
+            android:name="com.compgc02.team26.seek.Admin"
+            android:label="@string/title_activity_admin"
+            android:parentActivityName="com.compgc02.team26.seek.HomePage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.compgc02.team26.seek.HomePage" />
+        </activity>
+    </application>
+
+</manifest>
