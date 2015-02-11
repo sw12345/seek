@@ -63,7 +63,6 @@ public class StartPage extends SherlockFragmentActivity implements OnClickListen
 	// url to log user in
 	private static String url_login = "http://seek-app.wc.lt/login.php";
 
-
 	// url to create session
 	private String url_session = "http://seek-app.wc.lt/get_session.php";
 

@@ -49,6 +49,11 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 	SessionManager session;
 	Button saveButton;
 	String userId;
+	String email;
+	String email_address;
+	String currloc;
+	String under18;
+	String age;
 
 	private EditText inputFirstName;
 	private EditText inputLastName;
@@ -74,10 +79,14 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 
 	// url to update profile
 	private static final String url_update_userprofile = "http://seek-app.wc.lt/update_userprofile.php";
+	
+	// url to create session
+	private String url_session = "http://seek-app.wc.lt/get_session.php";
 
 	// JSON node names
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_MESSAGE = "message";
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -97,6 +106,7 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 
 		// Getting user id (userId) from intent
 		userId = intent.getStringExtra("userId");
+		
 
 		// Getting complete user profile in background thread
 		getUserProfile(userId);
@@ -301,6 +311,8 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 
 			// name
 			String userId = user.get(SessionManager.KEY_ID);
+			
+			email_address = user.get(SessionManager.KEY_EMAIL);
 
 			// Building Parameters
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -332,6 +344,7 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 				if (success == 1) {
 					// Successfully updated
 					Intent intent = getIntent();
+					storeSession(email_address);
 					// Send result code 50 to notify about profile update
 					setResult(50, intent);
 					finish();
@@ -358,6 +371,58 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 				Toast.makeText(getApplicationContext(), file_url, Toast.LENGTH_LONG).show();
 			}
 		}
+	}
+
+	/**
+	 * Create Session by getting data from database
+	 */
+	private void storeSession(final String email_address) {
+
+		StringRequest postReq2 = new StringRequest(Request.Method.POST, url_session, new Response.Listener<String>() {
+
+			@Override
+			public void onResponse(String response) {
+				Log.d(TAG, response.toString());
+
+				try {
+
+					JSONObject person = new JSONObject(response);
+					userId = person.getString("userId");
+					email = person.getString("email");
+					under18 = person.getString("under18");
+					age = person.getString("age");
+
+					// Store session
+					session.createLoginSession(userId, email, under18, age);
+
+				} catch (JSONException e) {
+					e.printStackTrace();
+					Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();				
+				}
+
+			}
+		}, new Response.ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				VolleyLog.d(TAG, "Error: " + error.getMessage());
+				Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+
+
+			}
+
+		})  {
+
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String, String> params = new HashMap<String, String>();
+				params.put("email_address", email_address);
+				return params;
+			}
+
+		};
+		Controller.getInstance().addToRequestQueue(postReq2);
+
 	}
 
 	@Override

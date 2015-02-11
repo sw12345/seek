@@ -112,9 +112,9 @@ public class ContactResultsRadius extends SherlockFragmentActivity implements Lo
 
 		if ((under18.equals("false") || under18.equals("true")) && user_age >=18) {
 			radiusContact_above18(radius, latitude, longitude, userId);
-		} else if (under18.equals("false") && user_age <=18){
+		} else if (under18.equals("false") && user_age <18){
 			radiusContact_above18(radius, latitude, longitude, userId);
-		} else if (under18.equals("true") && user_age <=18){
+		} else if (under18.equals("true") && user_age <18){
 			radiusContact_under18(radius, latitude, longitude, userId);
 		}
 
