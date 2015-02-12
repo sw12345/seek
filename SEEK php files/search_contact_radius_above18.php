@@ -6,7 +6,7 @@ error_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPOR
 //connect to database
 include 'db_connect.php';
 
-// from user's current location
+//check the value is set or not
 if(isset($_POST['radius'])) {
     $user_id = $_POST['user_id'];
     $radius = $_POST['radius'];
@@ -22,7 +22,6 @@ if(isset($_POST['radius'])) {
               AND FirstSet.distance< ?
               WHERE FirstSet.see_details = 'true' AND FirstSet.user_id NOT IN (?)
               ORDER BY distance";
-
 
     $stmt2 = $conn->prepare($query_above18);
     $stmt2->bind_param('ssssi', $latitude, $longitude, $latitude, $radius, $user_id);

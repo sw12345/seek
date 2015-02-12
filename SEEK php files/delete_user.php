@@ -9,13 +9,13 @@ $response = array();
 //connect to db
 include 'db_connect.php';
 
-//get user id from URL
+//check value is set or not
 if(isset($_POST['user_id'])) {
     $user_id = $_POST['user_id'];
     /**
      * The current database is a MyISAM database type due to it being a free hosting. Thus, deleting user won't delete
-     * event or venue created by this user. UnLtd should ensure that the database is of InnoDB to enable foreign key
-     * constraint that would allow cascading upon deletion or update (delete event or venue created by the user
+     * event or venue created by this user. UnLtd should ensure that the database is of InnoDB type to enable foreign key
+     * constraint functions that would allow cascading upon deletion or update (delete event or venue created by the user
      * deleted).
      */
 

@@ -6,6 +6,7 @@ error_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPOR
 //connect to database
 include 'db_connect.php';
 
+//check value is set or not
 if(isset($_POST['user_id'])) { $user_id = $_POST['user_id']; }
 
 //make a query
@@ -49,14 +50,11 @@ if ($stmt = $conn->prepare($query))
             'gender' => $gender,
             'interests' => $int_tags,
             'currloc' => $use_currloc,
-            'seecurrloc' => $see_currloc,
             'contdetails' => $see_details
         );
         json_encode($jsonResponse);
     };
 
-    // success
-    //$response["success"] = 1;
     echo json_encode($jsonResponse);
 
     //close statement

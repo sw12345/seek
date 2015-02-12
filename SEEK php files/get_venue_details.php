@@ -9,7 +9,6 @@ include 'db_connect.php';
 if(isset($_POST['venue_id'])) { $venue_id = $_POST['venue_id']; }
 
 //make a query
-//$query = "SELECT venue_id, v_name, v_type, address, post_code, max_cap, v_desc FROM venue WHERE venue_id = ?";
 $query = "SELECT SecondSet.venue_id, SecondSet.v_name, SecondSet.v_type, SecondSet.address, SecondSet.post_code, SecondSet.max_cap, SecondSet.v_desc, FirstSet.email_address, FirstSet.phone_nmbr, SecondSet.latitude, SecondSet.longitude FROM (SELECT user_id, email_address, phone_nmbr FROM users) as FirstSet INNER JOIN (SELECT user_id, venue_id, v_name, v_type, address, max_cap, v_desc, post_code, latitude, longitude FROM venue) as SecondSet on FirstSet.user_id = SecondSet.user_id WHERE venue_id = ?";
 
 if ($stmt = $conn->prepare($query)) {
@@ -38,8 +37,6 @@ if ($stmt = $conn->prepare($query)) {
 		json_encode($jsonResponse);
 	};
 
-	// success
-	//$response["success"] = 1;
 	echo json_encode($jsonResponse);
 
 	//close statement

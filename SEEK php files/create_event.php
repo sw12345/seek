@@ -8,9 +8,11 @@ if($_POST) {
 	$address = $_POST['address'];
 	$postcode = $_POST['post_code'];
 
-	// connect to google geocode api
+	// replace space with a plus sign
 	$trimaddress = str_replace(" ","+", trim($address));
 	$trimpostcode = str_replace(" ","+", trim($postcode));
+
+	// connect to google geocode api
 	$url = "https://maps.googleapis.com/maps/api/geocode/json?address=$trimaddress+$trimpostcode+UK&key=AIzaSyCaweuQFb5W4JYsPurl5y71DYqLiD6XjaU";
 	$json = file_get_contents($url);
 	$geocode = json_decode($json, true);
@@ -69,6 +71,8 @@ if($_POST) {
 	}else {
 		die("Unable to prepare statement.");
 	}
+
+	// close statement
 	$statement->close();
 	//close the db
 	$conn->close(); 

@@ -6,7 +6,7 @@ error_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPOR
 //connect to database
 include 'db_connect.php';
 
-// from user's current location
+//Check value is set or not
 if(isset($_POST['radius'])) {
     $user_id = $_POST['user_id'];
     $radius = $_POST['radius'];
@@ -46,13 +46,12 @@ if(isset($_POST['radius'])) {
 
     };
 
-
     echo json_encode($jsonResponse);
 
-//close statement
+    //close statement
     $stmt3->close();
 
-//close connection
+    //close connection
     $conn->close();
 
 }

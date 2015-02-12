@@ -6,6 +6,7 @@ error_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPOR
 //connect to database
 include 'db_connect.php';
 
+//check value is set or not
 if(isset($_POST['event_id'])) { $event_id = $_POST['event_id']; }
 
 //make a query
@@ -37,8 +38,6 @@ if ($stmt = $conn->prepare($query)) {
 		json_encode($jsonResponse);
 	};
 
-	// success
-	//$response["success"] = 1;
 	echo json_encode($jsonResponse);
 
 	//close statement

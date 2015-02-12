@@ -6,7 +6,7 @@ error_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPOR
 //connect to database
 include 'db_connect.php';
 
-// from user's current location
+//check the value is set or not
 if(isset($_POST['post_code'])) {
     $user_id = $_POST['user_id'];
     $post_code = $_POST['post_code']; // this could be postcodes or places
@@ -16,17 +16,17 @@ if(isset($_POST['post_code'])) {
     $json = file_get_contents($url);
     $geocode = json_decode($json, true);
 
-    // get latitude & longitude of the post code / address
+    // get latitude & longitude of the post code / place
     $latitude = $geocode['results'][0]['geometry']['location']['lat'];
     $longitude = $geocode['results'][0]['geometry']['location']['lng'];
 
-    // Make a query distance between two places for users above 18 years old
+    // Make a query distance between two places for users above 18 years old and less than 100 km
     $query_above18 = "SELECT FirstSet.user_id, FirstSet.first_name, FirstSet.last_name, FirstSet.int_tags, FirstSet.see_details, FirstSet.distance, SecondSet.age FROM
               (SELECT user_id, first_name, last_name, int_tags, see_details,(6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(latitude)) * COS(RADIANS(longitude) - RADIANS(?)) + SIN(RADIANS(?)) * SIN(RADIANS(latitude)))) AS distance FROM users) as FirstSet
               INNER JOIN (SELECT user_id, first_name, last_name, int_tags, see_details, TIMESTAMPDIFF( YEAR, birth_date, CURDATE()) AS age FROM users) AS SecondSet
               ON FirstSet.first_name = SecondSet.first_name
               AND SecondSet.age>18
-              AND FirstSet.distance<10
+              AND FirstSet.distance<100
               WHERE FirstSet.see_details = 'true' AND FirstSet.user_id NOT IN (?)
               ORDER BY distance";
 

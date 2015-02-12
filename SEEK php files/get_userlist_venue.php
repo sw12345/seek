@@ -10,10 +10,6 @@ include 'db_connect.php';
 $query = "SELECT user_id, venue_id, v_name, v_type, post_code, max_cap, v_desc FROM venue";
 
 if ($result = $conn->query($query)) {
-/*	$stmt->bind_param("i", $user_id);
-	$stmt->execute();
-	$stmt->store_result();
-	$stmt->bind_result($venue_id, $v_name, $v_type, $post_code, $max_cap, $v_desc);*/
 
 	//fetch values by looping through each row
 	while ($row = $result->fetch_assoc()) {
@@ -25,9 +21,7 @@ if ($result = $conn->query($query)) {
 			'venueType' => $row['v_type'],
 			'maxCap' => $row['max_cap'],
 			'postCode' => $row['post_code'],
-			'description' => $row['v_desc'],
-			'error' => "You have not created any venue."
-
+			'description' => $row['v_desc']
 		);
 	}
 }

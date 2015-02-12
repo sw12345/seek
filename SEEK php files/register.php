@@ -30,7 +30,6 @@ if (!empty($_POST)) {
 		$stmt->store_result();
 		$stmt->fetch();
 		$exists = $stmt->num_rows;
-		//echo json_encode($stmt->num_rows);
 
 		// If email address already existed
 		if ($exists != 0) {

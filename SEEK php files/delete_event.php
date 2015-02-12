@@ -9,7 +9,7 @@ $response = array();
 //connect to db
 include 'db_connect.php';
 
-//get event id from URL
+//check the value is set or not
 if(isset($_POST['event_id'])) { 
 	$event_id = $_POST['event_id']; 
 	//make a query

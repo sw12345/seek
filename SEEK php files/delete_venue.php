@@ -9,7 +9,7 @@ $response = array();
 //connect to db
 include 'db_connect.php';
 
-//get venue id from URL
+//check value is set or not
 if(isset($_POST['venue_id'])) { 
 	$venue_id = $_POST['venue_id']; 
 	//make a query

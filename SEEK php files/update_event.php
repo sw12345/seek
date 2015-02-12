@@ -6,6 +6,7 @@ error_reporting(E_ALL); ini_set('display_errors', 1); mysqli_report(MYSQLI_REPOR
 //establish connection with db
 include 'db_connect.php';
 
+//check value is set or not
 if (isset($_POST['event_id'])) {
 	$event_id = $_POST['event_id'];
 	$e_name = $_POST['e_name'];
@@ -17,9 +18,10 @@ if (isset($_POST['event_id'])) {
 	$e_desc = $_POST['e_desc'];
 	$address = $_POST['address'];
 
-	// connect to google geocode api
+	//replace empty space with a plus sign
 	$trimaddress = str_replace(" ","+", trim($address));
 	$trimpostcode = str_replace(" ","+", trim($postcode));
+	// connect to google geocode api
 	$url = "https://maps.googleapis.com/maps/api/geocode/json?address=$trimaddress+$trimpostcode+UK&key=AIzaSyCaweuQFb5W4JYsPurl5y71DYqLiD6XjaU";
 	$json = file_get_contents($url);
 	$geocode = json_decode($json, true);
