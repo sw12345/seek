@@ -83,12 +83,13 @@ public class ContactResultsPostcode extends SherlockFragmentActivity {
 		Intent intent = getIntent();
 		String post_code = intent.getStringExtra(INTENT_KEY);
 
+		// Execute different methods depending on the logic set
 		if ((under18.equals("false") || under18.equals("true")) && user_age >=18) {
-			postcodeSearch_above18(post_code, userId);
+			postcodeSearch_above18(post_code, userId); // shows contacts above 18 years old
 		} else if (under18.equals("false") && user_age <18){
-			postcodeSearch_above18(post_code, userId);
+			postcodeSearch_above18(post_code, userId); // shows contacts above 18 years old
 		} else if (under18.equals("true") && user_age <18){
-			postcodeSearch_under18(post_code, userId);
+			postcodeSearch_under18(post_code, userId); // shows contacts of all ages
 		}
 
 

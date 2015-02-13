@@ -17,8 +17,6 @@ import com.viewpagerindicator.TabPageIndicator;
 
 public class EventActivity extends SherlockFragmentActivity {
 
-	//SessionManager session;
-
 	//title of the tab
 	private static final String[] TITLE = new String[] { "Search", "Create", "Edit" };
 
@@ -33,12 +31,6 @@ public class EventActivity extends SherlockFragmentActivity {
 		setContentView(R.layout.activity_tabbed);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#f58021")));
-
-		// Session class instance
-		//session = new SessionManager(getApplicationContext());
-
-		// Check whether user is logged in or not
-		//session.checkLogin();
 
 		mAdapter = new FragmentAdapter(getSupportFragmentManager());
 

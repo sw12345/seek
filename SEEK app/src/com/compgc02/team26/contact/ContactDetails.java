@@ -65,9 +65,9 @@ public class ContactDetails extends SherlockFragmentActivity {
 		userId = intent.getStringExtra(TAG_UID);
 
 		// Getting complete contact details in background thread
-		getEventDetails(userId);
+		getContactDetails(userId);
 
-		// call owner of venue
+		// call user
 		callUser = (ImageView) findViewById(R.id.callUser);
 		callUser.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -78,7 +78,7 @@ public class ContactDetails extends SherlockFragmentActivity {
 			}
 		});
 
-		// text owner of venue
+		// text user
 		textUser = (ImageView) findViewById(R.id.textUser);
 		textUser.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -89,7 +89,7 @@ public class ContactDetails extends SherlockFragmentActivity {
 			}
 		});
 
-		// email owner of venue
+		// email user
 		emailUser = (ImageView) findViewById(R.id.emailUser);
 		emailUser.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -106,7 +106,7 @@ public class ContactDetails extends SherlockFragmentActivity {
 	/**
 	 * Getting contact details in background thread
 	 * */
-	private void getEventDetails(final String user_id) {
+	private void getContactDetails(final String user_id) {
 
 		StringRequest postReq2 = new StringRequest(Request.Method.POST, url_contact_details, new Response.Listener<String>() {
 

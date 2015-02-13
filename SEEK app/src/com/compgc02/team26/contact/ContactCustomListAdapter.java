@@ -55,7 +55,7 @@ public class ContactCustomListAdapter extends BaseAdapter {
 		// Gets contact data
 		Contact c = contactItems.get(position);
 
-		// Contact name
+		// Contact user id
 		userId.setText(c.getId());
 
 		// Contact name
