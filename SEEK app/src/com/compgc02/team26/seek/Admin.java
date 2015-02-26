@@ -88,8 +88,6 @@ public class Admin extends SherlockFragmentActivity {
 						pd.setMessage("Loading..."); // Show this while the list is loading
 						pd.show();
 						session.logoutUser();
-						
-
 					}
 				});
 

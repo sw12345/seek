@@ -11,6 +11,11 @@ import android.support.v4.app.DialogFragment;
 
 import com.compgc02.team26.seek.UserProfile;
 
+/**
+ * to instantiate Date Picker in UserProfile.java to allow user to select their birthdate
+ * @author User
+ *
+ */
 public class DatePickerFragment extends DialogFragment {
 
 	private SimpleDateFormat dateFormatter;

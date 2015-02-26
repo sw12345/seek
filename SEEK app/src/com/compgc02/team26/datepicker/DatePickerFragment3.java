@@ -13,7 +13,11 @@ import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-
+/**
+ * to instantiate Date Picker in EventCreate.java to allow user to select the start date of an event.
+ * @author User
+ *
+ */
 public class DatePickerFragment3 extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 	private EditText inputEndDate;
 	private SimpleDateFormat dateFormatter;

@@ -30,7 +30,7 @@ public class HomePage extends SherlockFragmentActivity {
 	// url to create session
 	private String url_session = "http://seek-app.wc.lt/get_session.php";
 	private static final String TAG = HomePage.class.getSimpleName();
-	
+
 	String userId;
 	String email;
 	String currloc;
@@ -44,64 +44,15 @@ public class HomePage extends SherlockFragmentActivity {
 
 		// Session class instance
 		session = new SessionManager(getApplicationContext());
-		
+
+		// Check whether user is logged in or not
+		session.checkLogin();
+
 		Intent i = getIntent();
 		email = i.getStringExtra("email");
-		//storeSession(email);
 
 	}
 
-	/**
-	 * Create Session by getting data from database
-	 *//*
-	private void storeSession(final String email_address) {
-
-		StringRequest postReq2 = new StringRequest(Request.Method.POST, url_session, new Response.Listener<String>() {
-
-			@Override
-			public void onResponse(String response) {
-				Log.d(TAG, response.toString());
-
-				try {
-
-					JSONObject person = new JSONObject(response);
-					userId = person.getString("userId");
-					email = person.getString("email");
-					currloc = person.getString("currentloc");
-					under18 = person.getString("under18");
-
-					// Store session
-					session.createLoginSession(userId, email, currloc, under18);
-
-				} catch (JSONException e) {
-					e.printStackTrace();
-					Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();				
-				}
-
-			}
-		}, new Response.ErrorListener() {
-
-			@Override
-			public void onErrorResponse(VolleyError error) {
-				VolleyLog.d(TAG, "Error: " + error.getMessage());
-				Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-
-
-			}
-
-		})  {
-
-			@Override
-			protected Map<String, String> getParams() throws AuthFailureError {
-				Map<String, String> params = new HashMap<String, String>();
-				params.put("email_address", email);
-				return params;
-			}
-
-		};
-		Controller.getInstance().addToRequestQueue(postReq2);
-
-	}*/
 
 	public void profileButtonOnClick(View v) {
 
@@ -149,7 +100,6 @@ public class HomePage extends SherlockFragmentActivity {
 
 	public void logoutButtonOnClick(View v) {
 		session.logoutUser();
-		;
 
 	}
 

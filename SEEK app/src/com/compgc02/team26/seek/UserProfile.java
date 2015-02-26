@@ -105,8 +105,7 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 		Intent intent = getIntent();
 
 		// Getting user id (userId) from intent
-		userId = intent.getStringExtra("userId");
-		
+		userId = intent.getStringExtra("userId");		
 
 		// Getting complete user profile in background thread
 		getUserProfile(userId);
@@ -303,9 +302,6 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 			boolean bool_contdetails = inputContDetails.isChecked();
 			String contdetails = Boolean.toString(bool_contdetails);
 
-			//String seecurrloc = inputSeeCurrLoc.getText().toString();
-
-
 			// get user data from sessionnn
 			HashMap<String, String> user = session.getUserDetails();
 
@@ -326,7 +322,6 @@ public class UserProfile extends SherlockFragmentActivity implements OnDateSetLi
 			params.add(new BasicNameValuePair("gender", gender));
 			params.add(new BasicNameValuePair("int_tags", interests));
 			params.add(new BasicNameValuePair("use_currloc", currloc));
-			//params.add(new BasicNameValuePair("see_currloc", seecurrloc));
 			params.add(new BasicNameValuePair("see_details", contdetails));
 			params.add(new BasicNameValuePair("birth_date", birthdate));
 

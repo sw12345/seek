@@ -33,11 +33,6 @@ import com.compgc02.samsudin.seek.R;
 
 public class StartPage extends SherlockFragmentActivity implements OnClickListener {
 
-	/*public void loginClick(View v) {
-		Intent intent = new Intent(this, HomePage.class);
-		startActivity(intent);
-	}*/
-
 	public void newUserOnClick (View v) {
 		Intent intent = new Intent(this, RegisterPage.class);
 		startActivity(intent);
